@@ -60,6 +60,8 @@ push
 status
 commit
 credentials
+existRepo
+newRepo
 
 ### Windows ###
 # Windows thumbnail cache files
