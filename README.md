@@ -1,1 +1,1 @@
-# Modul3LogInSample
+# cphbusiness 2. semester project
