@@ -6,7 +6,7 @@ package Logic.DTO;
  */
 public class User {
 
-    public User( String email, String password, String role ) {
+    public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -41,12 +41,20 @@ public class User {
         this.role = role;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId( int id ) {
+    public void setID( int id ) {
         this.id = id;
     }
 
+    @Override
+    public String toString()
+    {
+        return "User{" + "(user)id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + '}';
+    }
+
+    
+    
 }

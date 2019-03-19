@@ -1,0 +1,141 @@
+/* 
+    Created on : Mar 19, 2019, 1:16:21 PM
+    Author     : martin
+*/
+
+html, body {
+    width: 100%;  
+    height: 100%;
+    background: #FF7777;
+    -webkit-font-smoothing: antialiased;
+}
+
+#headerDiv img {
+    position: relative;
+    top: 10px;
+}
+
+#legoText span {
+    animation: bounce .3s ease infinite alternate;
+    font-family: 'Titan One', cursive;
+    font-size: 100px;
+    color: #FFF;
+    text-shadow: 0 1px 0 #CCC,
+        0 2px 0 #CCC,
+        0 3px 0 #CCC,
+        0 4px 0 #CCC,
+        0 5px 0 #CCC,
+        0 6px 0 transparent,
+        0 7px 0 transparent,
+        0 8px 0 transparent,
+        0 9px 0 transparent,
+        0 10px 10px rgba(0, 0, 0, .4);
+}
+
+#legoText span:nth-child(2) { animation-delay: .3s; }
+#legoText span:nth-child(3) { animation-delay: .4s; }
+#legoText span:nth-child(4) { animation-delay: .5s; }
+
+@keyframes bounce {
+    100% {
+        top: -20px;
+        text-shadow: 0 1px 0 #CCC,
+            0 2px 0 #CCC,
+            0 3px 0 #CCC,
+            0 4px 0 #CCC,
+            0 5px 0 #CCC,
+            0 6px 0 #CCC,
+            0 7px 0 #CCC,
+            0 8px 0 #CCC,
+            0 9px 0 #CCC,
+            0 50px 25px rgba(0, 0, 0, .2);
+    }
+}
+
+#headerTopDiv {
+    text-align: center;
+    position: relative;
+    top: 0px;
+}
+
+#headerDiv {
+    /*    position: fixed;*/
+    display: inline-block;
+    top: 0;
+    left: 300px;
+    /*width: 300px;*/
+    border: 3px solid #73AD21;
+    background-color: lightblue;
+    font-size: 56px
+}
+
+
+#dashboard {
+    width: 100px;
+    background-color: rgba(255,211,224,0.5);
+    padding: 20px 20px 0 20px;
+    position: absolute;
+    left: -32px;
+    top: 300px;
+    z-index: 50;
+}
+#dashboard img {
+    margin-bottom: 20px;
+    border: 1px solid rgb(0,0,0);
+    float: right;
+}
+
+#login {
+    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 100;
+    background-color: rgb(27,45,94);
+    border-radius: 0 0 5px 5px;
+}
+
+#login a {
+    text-decoration: none;
+}
+#open {
+    margin: 0;
+    cursor: pointer;
+    background-image:  url(../img/open.png);
+    background-repeat: no-repeat;
+    background-position:  8px 7px;
+    color: white;
+    padding: 5px 0 5px 30px;
+    border-radius: 0 0 5px 5px;
+}
+
+#login .close {
+    background-image: url(../img/close.png);
+}
+
+#open:hover {
+    color: rgb(0,0,0);
+    background-color: rgb(200,200,200);	
+}
+
+#login form {
+    padding: 10px 10px 0 10px;
+    display: none;	
+}
+#login label {
+    font-size: .75em;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    text-align:right;
+    margin: 0 15px 0 0;
+    display: inline-block;
+}
+#login input[type="text"] {
+    font-size: 14px;
+    width: 140px;	
+}
+#login .button {
+    text-align: right;	
+    padding-right: 15px;
+}

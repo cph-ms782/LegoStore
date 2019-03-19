@@ -1,6 +1,5 @@
 package Presentation;
 
-import Presentation.Command;
 import Logic.LogicFacade;
 import Logic.LoginSampleException;
 import Logic.DTO.User;

@@ -1,0 +1,48 @@
+<%@ page pageEncoding="UTF-8" %>
+<div id="dashboard">
+    <img src="img/shopping_cart.png" width="40" height="40" alt="blue">
+</div>
+
+<div id="headerTopDiv">
+    <div id="headerDiv">
+        <img src="img/lego_brick.gif" alt="legoBrick">
+        <h1 id="headerText">The 
+            <span id="legoText">
+                <span>L</span>
+                <span>E</span>
+                <span>G</span>
+                <span>O</span>
+            </span>
+            Store
+        </h1>
+    </div>
+</div>
+
+<div id="login">
+
+    <a href="form.html"><p id="open">Login</p></a>
+
+    <!--GET changes to POST when deployed-->
+    <form name="LoginCommand" action="FrontController" method="GET">
+
+        <input type="hidden" name="command" value="LoginCommand">
+        <p>
+            <label for="username">Email</label>
+            <input type="text" name="email" id="username">
+        </p>
+        <p>
+            <label for="password">Password: </label>
+            <input type="text" name="password" id="password">
+        </p>
+        <p class="button">
+            <input type="submit" name="button" id="button" value="Submit" >
+        </p>
+    </form>
+
+    <!--GET changes to POST when deployed-->
+    <form name="RegisterCommand" action="FrontController" method="GET">
+
+        <input type="hidden" name="command" value="RegisterCommand">
+        <input type="submit" name="button" id="button" value="Registration" >
+    </form>
+</div>

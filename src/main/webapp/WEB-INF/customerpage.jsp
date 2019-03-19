@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Customer home page</title>
+        <%@ include file = "jspf/header.jspf" %>
     </head>
     <body>
-        <h1>Hello <%=request.getParameter( "email" )%> </h1>
+        <%@ include file = "jspf/body.jspf" %>
+        <h1>Hello <%=request.getParameter("email")%> </h1>
         You are now logged in as a customer of our wonderful site.
     </body>
 </html>
