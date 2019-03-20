@@ -50,7 +50,7 @@ html, body {
 #headerTopDiv {
     text-align: center;
     position: fixed;
-    left: 300px;
+    left: 0;
     top: 0px;
 }
 
@@ -79,8 +79,8 @@ html, body {
     background-color: rgba(255,211,224,0.5);
     padding: 20px 20px 0 20px;
     position: absolute;
-    left: -32px;
-    top: 300px;
+    top: -32px;
+    right: 450px;
     z-index: 50;
 }
 #dashboard img {
@@ -92,7 +92,7 @@ html, body {
 #login {
     width: 300px;
     position: absolute;
-    left: 0;
+    left: 400px;
     top: 0px;
     z-index: 100;
     background-color: rgb(27,45,94);
@@ -142,4 +142,55 @@ html, body {
 #login .button {
     text-align: right;	
     padding-right: 15px;
+}
+
+#registerButton {
+    display: none;
+}
+
+#registerDiv {
+    position: relative;
+    width: 450px;
+    left: 400px;
+    top: 176px;
+    z-index: 100;
+    background-color: rgb(27,45,94);
+    border-radius: 0 0 5px 5px;
+}
+
+#registerDiv form {
+    padding: 10px 10px 0 10px;
+    display: none;	
+}
+#registerDiv label {
+    font-size: .75em;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    text-align:right;
+    margin: 0 15px 0 0;
+    display: inline-block;
+}
+
+#mainInfo {
+    position: absolute;
+    font-size: 60px;
+    left: 450px;
+    top: 50px;
+    z-index: 1;
+}
+#mainInfo p {
+    font-size: 20px;
+    font-family: 'Titan One', cursive;
+}
+
+#errorInfo {
+    position: absolute;
+    font-size: 35px;
+    left: 0;
+    bottom: 0;
+}
+#errorInfo p {
+    font-size: 25px;
+    font-family: 'Titan One', cursive;
 }
