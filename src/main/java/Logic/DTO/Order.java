@@ -13,7 +13,7 @@ public class Order
     private int height;
     private boolean Shipped;
 
-    public Order(int orderID, int userID, int length, int width, int height, boolean Shipped)
+    public Order(int userID, int length, int width, int height, boolean Shipped)
     {
         this.orderID = orderID;
         this.userID = userID;

@@ -11,21 +11,34 @@ import java.util.List;
  */
 public class OrderMapper_Dummy
 {
-
     private static List<Order> orders;
+    private static int orderID = 1;
 
     public OrderMapper_Dummy()
     {
         orders = new ArrayList<>();
-        orders.add(new Order(1,1,3,7,5,false));
-        orders.add(new Order(2,2,4,6,3,false));
-        orders.add(new Order(3,3,4,7,3,false));
-        orders.add(new Order(4,3,5,6,5,false));
+        Order o = new Order(1,3,7,5,false);
+        o.setOrderID(++orderID);
+        orders.add(o);
+        
+         o = new Order(1,3,7,5,false);
+        o.setOrderID(++orderID);
+        orders.add(o);
+        
+         o = new Order(3,3,7,5,false);
+        o.setOrderID(++orderID);
+        orders.add(o);
+
+        o = new Order(2,3,7,5,false);
+        o.setOrderID(++orderID);
+        orders.add(o);
     }
 
-    public static void createOrder(Order order) throws OrderSampleException
+    public static Order createOrder(Order order) throws OrderSampleException
     {
+        order.setOrderID(++orderID);
         orders.add(order);
+        return order;
     }
 
     public static Order findOrder(int orderID) throws OrderSampleException
@@ -40,7 +53,7 @@ public class OrderMapper_Dummy
         throw new OrderSampleException("No order found");
     }
 
-    public List<Order> findOrders() throws OrderSampleException
+    public static List<Order> findOrders() throws OrderSampleException
     {
         return orders;
     }

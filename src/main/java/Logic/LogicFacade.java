@@ -32,29 +32,27 @@ public class LogicFacade
         return user;
     }
 
-    /**
-     * Return map of Orders from userID
-     *
-     * @param orderId
-     * @return
-     * @throws Logic.OrderSampleException
-     */
+    
+    public static Order CreateOrder(Order order) throws OrderSampleException
+    {
+        return OrderMapper_Dummy.createOrder(order);
+    }
+    
     public static Order fetchOrder(int orderId) throws OrderSampleException
     {
         return OrderMapper_Dummy.findOrder(orderId);
     }
 
+    public static List<Order> fetchOrders() throws OrderSampleException
+    {
+        return OrderMapper_Dummy.findOrders();
+    }
+    
     public static Order setOrderAsShipped(Order order)
     {
         order.setShipped(true);
         return order;
     }
-
-    public static List<Order> fetchOrders() throws OrderSampleException
-    {
-        return orders.findOrders();
-    }
-    
     
     public static void main(String[] args) throws LoginSampleException
     {

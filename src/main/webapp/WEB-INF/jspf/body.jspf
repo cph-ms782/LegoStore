@@ -41,13 +41,13 @@
             <input type="submit" name="button" id="button" value="Submit" >
         </p>
     </form>
-        <input type="submit" name="button" id="registerButton" value="Registration" >
+    <input type="submit" name="button" id="registerButton" value="Registration" >
 </div>
 
 <div id="registerDiv">
     <!--GET changes to POST when deployed-->
     <form name="RegisterCommand" action="FrontController" method="GET">
-        
+
         <input type="hidden" name="command" value="RegisterCommand">
         <p>
             <label for="username">Email</label>
@@ -68,5 +68,9 @@
 </div>
 
 <div id="mainInfo">
+    <p></p>
+</div>
+
+<div id="orderInfo">
     <p></p>
 </div>
