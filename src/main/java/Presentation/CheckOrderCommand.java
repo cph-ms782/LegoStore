@@ -1,10 +1,12 @@
 package Presentation;
 
+import Logic.DTO.Bricks;
 import Logic.DTO.Order;
 import Logic.LogicFacade;
 import Logic.DTO.User;
 import Logic.LoginSampleException;
 import Logic.OrderSampleException;
+import Logic.calcHouse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -60,14 +62,18 @@ public class CheckOrderCommand extends Command
                 if (isOrder && orderID > 0)
                 {
                     Order o = LogicFacade.fetchOrder(orderID);
+                    Bricks bricks = calcHouse.calc(o.getHeight(), 
+                            o.getWidth(), o.getHeight());
                     if (isShipped)
                     {
                         LogicFacade.setOrderAsShipped(o);
                     }
+                    session.setAttribute("bricks", bricks);
                     session.setAttribute("order", o);
                     session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
                 } else
                 {
+                    session.setAttribute("bricks", null);
                     session.setAttribute("order", null);
                     session.setAttribute("orderUser", null);
                 }

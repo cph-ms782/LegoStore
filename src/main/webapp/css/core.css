@@ -74,21 +74,6 @@ html, body {
     width: 400px;
 }
 
-#dashboard {
-    width: 100px;
-    background-color: rgba(255,211,224,0.5);
-    padding: 20px 20px 0 20px;
-    position: absolute;
-    top: -32px;
-    right: 450px;
-    z-index: 50;
-}
-#dashboard img {
-    margin-bottom: 20px;
-    border: 1px solid rgb(0,0,0);
-    float: right;
-}
-
 #login {
     width: 300px;
     position: absolute;
@@ -184,19 +169,6 @@ html, body {
     font-family: 'Titan One', cursive;
 }
 
-#orderInfo {
-    position: absolute;
-    /*font-size: 60px;*/
-    left: 10px;
-    top: 500px;
-    z-index: 50;
-}
-/*#orderInfo p {
-    font-size: 20px;
-    font-family: 'sans-serif', cursive;
-}*/
-
-
 #errorInfo {
     position: absolute;
     font-size: 35px;
@@ -208,7 +180,26 @@ html, body {
     font-family: 'Titan One', cursive;
 }
 
-.highlight {
- background-color: Yellow;
- color: Green;
+#orderInfoBox {
+    padding: 5px;
+    border:2px solid #4CAF50;
+    background-color: gainsboro;
+    color: black;
+    font-family: 'Titan One', cursive;
+    font-size:10px;
+    width:100%;
+    position: absolute;
+    right: 50px;
+    height: auto;
+    width: auto;
+}
+
+.orderInfo p {
+    display: inline-block;
+    font-size: 45px;
+}
+
+#orderInfoHeader {
+    text-shadow: 2px 2px 4px #000;
+    font-size: 55px;
 }

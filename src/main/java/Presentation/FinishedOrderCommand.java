@@ -35,6 +35,8 @@ public class FinishedOrderCommand extends Command
                     session.setAttribute("order", null);
                 } else if ("customer".equals(user.getRole()))
                 {
+                    session.setAttribute("orders",
+                            LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
                     session.setAttribute("order", order);
                 }
             } catch (OrderSampleException ex)

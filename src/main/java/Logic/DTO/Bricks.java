@@ -43,6 +43,5 @@ public class Bricks
     {
         this.oneBrick += oneBrick;
     }
-
     
 }

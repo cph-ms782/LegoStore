@@ -4,6 +4,7 @@
     Author     : kasper
 --%>
 
+<%@page import="Logic.DTO.Bricks"%>
 <%@page import="Logic.DTO.OrderList"%>
 <%@page import="java.util.List"%>
 <%@page import="Logic.DTO.User"%>
@@ -21,6 +22,7 @@
             User user = (User) session.getAttribute("user");
             User orderUser = (User) session.getAttribute("orderUser");
             String role = (String) session.getAttribute("role");
+            Bricks bricks = (Bricks) session.getAttribute("bricks");
             String userName = null;
             boolean isOrderObject = false;
             boolean isOrdersObject = false;
@@ -31,6 +33,9 @@
             int width = 0;
             int height = 0;
             int orderID = 0;
+            int fourBricks = 0;
+            int twoBricks = 0;
+            int oneBricks = 0;
             boolean isShipped = false;
 
             if (role != null && role.equals("employee"))
@@ -38,7 +43,36 @@
                 isEmployee = true;
             }
 
-            if (orders != null && orders.getOrders() != null && orders.getOrders().size() > 0)
+            if (user != null)
+            {
+                userName = user.getEmail();
+                isUserObject = true;
+            }
+            if (orderUser != null)
+            {
+                userName = orderUser.getEmail();
+                isOrderUserObject = true;
+            }
+            if (bricks != null)
+            {
+                fourBricks = bricks.getFourBrick();
+                twoBricks = bricks.getTwoBrick();
+                oneBricks = bricks.getOneBrick();
+            }
+
+            if (order != null)
+            {
+                length = order.getLength();
+                width = order.getWidth();
+                height = order.getHeight();
+
+                orderID = order.getOrderID();
+                isShipped = order.isShipped();
+                isOrderObject = true;
+            }
+
+            if (orders != null && orders.getOrders() != null
+                    && orders.getOrders().size() > 0)
             {
                 isOrdersObject = true;
                 String userID;
@@ -50,8 +84,6 @@
             $(document).ready(function ()
             {
                 header = ['Ordre Nummer', 'Afsendt'];
-//               Dummy order array
-//                orderArray = [['1', 'false'], ['2', 'false'], ['3', 'false']];
 
 //      making JS array from java
                 orderArray = [
@@ -66,7 +98,7 @@
             <%= i + 1 < orders.getOrders().size() ? "," : ""%>
             <%}%>
                 ];
-                createTable(header, orderArray, 'mainTable', true);
+                createTable(header, orderArray, 'mainTable');
                 $('#mainTable:has(td)').mouseover(function (e)
                 {
                     $(this).css('cursor', 'crosshair');
@@ -79,8 +111,7 @@
                     var clickedRow = $(e.target).closest('tr');
                     var value = clickedRow.find('td:eq(0)').text();
             <%if (isEmployee)
-                        { %>
-//                    var isShipped = clickedRow.find('td:eq(1)').text();
+                { %>
                     if (clickedCell.text() == 'false')
                     {
                         var r = confirm("Er varen afsendt?");
@@ -95,30 +126,10 @@
                     var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
                     window.location.href = url;
                 }); // end mouseover
+
             }); // end ready
         </script>
         <%}%>
-        <%
-            if (order != null)
-            {
-                length = order.getLength();
-                width = order.getWidth();
-                height = order.getHeight();
-                orderID = order.getOrderID();
-                isShipped = order.isShipped();
-                isOrderObject = true;
-            }
-            if (user != null)
-            {
-                userName = user.getEmail();
-                isUserObject = true;
-            }
-            if (orderUser != null)
-            {
-                userName = orderUser.getEmail();
-                isOrderUserObject = true;
-            }
-        %>
     </head>
 
     <body>
@@ -126,22 +137,26 @@
         <
         <%if (isOrderObject)
             {%>
-        <div id="orderInfo">
-            <h2>Seneste ordre</h2><br>
-            <h6>OrdreID: <%=orderID%></h6><br>
-            <%if (isUserObject)
-                {%>
-            <h6>Køber: <%=userName%></h6><br>
-            <%}%>
-            <br>
-            <h6>Length : <%=length%></h6><br>
-            <h6>Width: <%=width%></h6><br>
-            <h6>Height: <%=height%></h6><br>
-            <h6>Shipped: <%=isShipped%></h6><br>
+        <div id="orderInfoBox">
+            <div class="orderInfo">
+                <p id='orderInfoHeader'>Valgt ordre</p><br>
+                <p>OrdreID: <%=orderID%></p><br>
+                <%if (isUserObject)
+                    {%>
+                <p>Køber: <%=userName%></p><br>
+                <%}%>
+                <br>
+                <p>Stykliste</p><br>
+                <p>4-brik: <%=fourBricks%></p><br>
+                <p>2-brik: <%=twoBricks%></p><br>
+                <p>1-brik: <%=oneBricks%></p><br>
+                <p>Længde/bredde/højde: <%=length%>/<%=width%>/<%=height%></p><br><br>
+                <p>Shipped: <%=isShipped%></p><br>
+            </div>
         </div>
         <% } else
         { %>
-        <div id="errorInfo">Ingen ordrer<br>
+        <div id="errorInfo">Ingen ordrer valgt<br>
         </div>
         <%}%>
     </body>

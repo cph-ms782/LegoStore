@@ -9,10 +9,9 @@ import Logic.DTO.Bricks;
 public class calcHouse
 {
 
-    public static Bricks calcSide(int length)
+    private static Bricks calcSide(int length, Bricks bricks)
     {
-        Bricks bricks = new Bricks();
-        
+
         bricks.addFourBricks(length / 4);
         int rem = length % 4;
 
@@ -23,24 +22,20 @@ public class calcHouse
         return bricks;
     }
 
-    public static void calc(int length, int width, int height)
+    public static Bricks calc(int length, int width, int height)
     {
+        Bricks bricks = new Bricks();
         // minus two because next wallside start at end of this side
         int longSide = length - 2;
         int shortSide = width - 2;
 
         for (int i = 1; i <= height; i++)
         {
-            calcSide(longSide);
-            calcSide(longSide);
-            calcSide(shortSide);
-            calcSide(shortSide);
+            bricks = calcSide(longSide, bricks);
+            bricks = calcSide(longSide, bricks);
+            bricks = calcSide(shortSide, bricks);
+            bricks = calcSide(shortSide, bricks);
         }
-
-    }
-
-    public static void main(String[] args)
-    {
-        new calcHouse().calc(21, 10, 5);
+        return bricks;
     }
 }
