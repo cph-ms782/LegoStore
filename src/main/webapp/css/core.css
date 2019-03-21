@@ -181,9 +181,8 @@ html, body {
 }
 
 #orderInfoBox {
-    padding: 5px;
+    padding: 5px 5px 0px 35px;
     border: 2px solid #4CAF50;
-    color: black;
     font-size:10px;
     width:100%;
     position: absolute;
@@ -191,19 +190,28 @@ html, body {
     height: auto;
     width: auto;
     background-color: gainsboro;
-    background-image: url("../img/lego_house.jpg");
+    background-image: url("../img/lego_house2.jpg");
 }
 
 .orderInfo p {
     font-family: 'Times New Roman', cursive;
     display: inline-block;
+    color: yellow;
+    text-shadow: 3px 3px 5px #000;
+    font-size: 40px;
+}
+
+.orderInfo li {
+    font-family: 'Times New Roman', cursive;
     color: black;
     text-shadow: 3px 3px 5px white;
-    font-size: 40px;
+text-align: center;
+    font-size: 60px;
 }
 
 #orderInfoHeader {
     font-family: 'Times New Roman', cursive;
     text-shadow: 2px 2px 4px #000;
-    font-size: 55px;
+    color: black;
+    font-size: 65px;
 }

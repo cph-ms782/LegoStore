@@ -146,10 +146,13 @@
                 <p>Køber: <%=userName%></p><br>
                 <%}%>
                 <br>
-                <p>Stykliste</p><br>
-                <p>4-brik: <%=fourBricks%></p><br>
-                <p>2-brik: <%=twoBricks%></p><br>
-                <p>1-brik: <%=oneBricks%></p><br>
+                <p style="text-align: center; font-size: 60px; font-style: oblique;">Stykliste</p><br>
+                <ul>
+                    <li>4-brik: <%=fourBricks%></li>
+                    <li>2-brik: <%=twoBricks%></li>
+                    <li>1-brik: <%=oneBricks%></li>
+                </ul>
+                <br>
                 <p>Længde/bredde/højde: <%=length%>/<%=width%>/<%=height%></p><br><br>
                 <p>Shipped: <%=isShipped%></p><br>
             </div>
