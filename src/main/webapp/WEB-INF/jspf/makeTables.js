@@ -38,20 +38,20 @@ function createTable(headerNames, tableContent, tableID, boolMakeClickable)
 
 //            if boolMakeClickable is true make cells clickable. Click will
 //            send invoice_id value back to admin.jsp page
-            if (boolMakeClickable)
+            if (true)
             {
                 if (j == 0)
                 {
                     td.onclick = function ()
                     {
-                        var url = "control?origin=admin&invoice_id=" + this.innerHTML;
+                        var url = "FrontController?command=CheckOrderCommand&seeOrder=true&orderID=" + this.innerHTML;
                         window.location.href = url;
                     };
                 } else
                 {
                     td.onclick = function ()
                     {
-                        var url = "control?origin=admin&invoice_id=" + this.previousElementSibling.innerHTML;
+                        var url = "FrontController?command=CheckOrderCommand&seeOrder=true&orderID=" + this.previousElementSibling.innerHTML;
                         window.location.href = url;
                     };
                 }

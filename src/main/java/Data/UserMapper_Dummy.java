@@ -13,7 +13,7 @@ public class UserMapper_Dummy
 {
 
     private static List<User> users = new ArrayList<>();
-    private static int userID = 1;
+    private static int userID = 0;
 
     public UserMapper_Dummy()
     {
@@ -52,4 +52,15 @@ public class UserMapper_Dummy
         throw new LoginSampleException("No user found");
     }
 
+    public static User getUser(int userID) throws LoginSampleException
+    {
+        for (User user : users)
+        {
+            if (user.getID()==(userID))
+            {
+                return user;
+            }
+        }
+        throw new LoginSampleException("No user found");
+    }
 }

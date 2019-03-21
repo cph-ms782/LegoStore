@@ -19,9 +19,11 @@
         <% Order order = (Order) session.getAttribute("order");
             OrderList orders = (OrderList) session.getAttribute("orders");
             User user = (User) session.getAttribute("user");
+            User orderUser = (User) session.getAttribute("orderUser");
             String userName = null;
             boolean isOrderObject = false;
             boolean isOrdersObject = false;
+            boolean isOrderUserObject = false;
             boolean isUserObject = false;
             int length = 0;
             int width = 0;
@@ -40,8 +42,7 @@
             $(document).ready(function ()
             {
                 header = ['Order Number', 'Shipped'];
-
-//                Dummy order array
+//               Dummy order array
 //                orderArray = [['1', 'false'], ['2', 'false'], ['3', 'false']];
 
 //      making JS array from java
@@ -57,11 +58,22 @@
             <%= i + 1 < orders.getOrders().size() ? "," : ""%>
             <%}%>
                 ];
+                createTable(header, orderArray, 'mainTable', true);
+                $('#mainTable:has(td)').mouseover(function (e)
+                {
+                    $(this).css('cursor', 'crosshair');
+                }); // end mouseover
 
-<!--creating all orders-table...-->
-                createTable(header, orderArray, 'mainTable', false);
-            }
-            ); // end ready
+                $('#mainTable:has(td)').click(function (e)
+                {
+                    var clickedCell;
+                    clickedRow = $(e.target).closest('tr');
+                    var value = clickedRow.find('td:eq(0)').text();
+
+                    var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
+                    window.location.href = url;
+                }); // end mouseover
+            }); // end ready
         </script>
         <%}%>
         <%
@@ -78,6 +90,11 @@
             {
                 userName = user.getEmail();
                 isUserObject = true;
+            }
+            if (orderUser != null)
+            {
+                userName = orderUser.getEmail();
+                isOrderUserObject = true;
             }
         %>
     </head>

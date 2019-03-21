@@ -12,20 +12,20 @@ import java.util.List;
 public class OrderMapper_Dummy
 {
     private static List<Order> orders;
-    private static int orderID = 1;
+    private static int orderID = 0 ;
 
     public OrderMapper_Dummy()
     {
         orders = new ArrayList<>();
-        Order o = new Order(1,3,7,5,false);
+        Order o = new Order(1,2,3,4,false);
         o.setOrderID(++orderID);
         orders.add(o);
         
-         o = new Order(1,3,7,5,false);
+         o = new Order(1,6,2,11,false);
         o.setOrderID(++orderID);
         orders.add(o);
         
-         o = new Order(3,3,7,5,false);
+         o = new Order(3,2,4,2,false);
         o.setOrderID(++orderID);
         orders.add(o);
 
@@ -41,12 +41,14 @@ public class OrderMapper_Dummy
         return order;
     }
 
-    public static Order findOrder(int orderID) throws OrderSampleException
+    public static Order findOrder(int id, String idType) throws OrderSampleException
     {
         for (Order order : orders)
         {
-            if (order.getOrderID() == orderID)
+            if ("order".equals(idType) && order.getOrderID() == id)
             {
+                return order;
+            } else if  ("user".equals(idType) && order.getUserID()== id){
                 return order;
             }
         }

@@ -207,3 +207,8 @@ html, body {
     font-size: 25px;
     font-family: 'Titan One', cursive;
 }
+
+.highlight {
+ background-color: Yellow;
+ color: Green;
+}

@@ -33,6 +33,10 @@ public class LogicFacade
         return user;
     }
 
+    public static User fetchUser(int userID) throws LoginSampleException{
+        return UserMapper_Dummy.getUser(userID);
+    }
+    
     public static Order CreateOrder(Order order) throws OrderSampleException
     {
         return OrderMapper_Dummy.createOrder(order);
@@ -40,9 +44,14 @@ public class LogicFacade
 
     public static Order fetchOrder(int orderId) throws OrderSampleException
     {
-        return OrderMapper_Dummy.findOrder(orderId);
+        return OrderMapper_Dummy.findOrder(orderId, "order");
     }
 
+    public static Order fetchUserOrder(int userId) throws OrderSampleException
+    {
+        return OrderMapper_Dummy.findOrder(userId, "user");
+    }
+    
     public static List<Order> fetchOrders() throws OrderSampleException
     {
         return OrderMapper_Dummy.findOrders();
