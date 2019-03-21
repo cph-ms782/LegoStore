@@ -5,6 +5,7 @@ import Logic.DTO.User;
 import Data.UserMapper_DB;
 import Data.UserMapper_Dummy;
 import Logic.DTO.Order;
+import Logic.DTO.OrderList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,12 +33,11 @@ public class LogicFacade
         return user;
     }
 
-    
     public static Order CreateOrder(Order order) throws OrderSampleException
     {
         return OrderMapper_Dummy.createOrder(order);
     }
-    
+
     public static Order fetchOrder(int orderId) throws OrderSampleException
     {
         return OrderMapper_Dummy.findOrder(orderId);
@@ -47,13 +47,20 @@ public class LogicFacade
     {
         return OrderMapper_Dummy.findOrders();
     }
-    
+
     public static Order setOrderAsShipped(Order order)
     {
         order.setShipped(true);
         return order;
     }
-    
+
+    public static OrderList fillOrderList(List<Order> orders)
+    {
+        OrderList ol = new OrderList();
+        ol.setOrders(orders);
+        return ol;
+    }
+
     public static void main(String[] args) throws LoginSampleException
     {
         try
@@ -62,17 +69,17 @@ public class LogicFacade
             System.out.println("createUser User: " + u.toString());
             u = login("hans@jensen.dk", "1234");
             System.out.println("Login User: " + u.toString());
-            
+
             for (Order fetchOrder : fetchOrders())
             {
                 System.out.println(fetchOrder.toString());
-                        }
+            }
             System.out.println("Order 2: " + fetchOrder(2));
             setOrderAsShipped(fetchOrder(2));
             System.out.println("Order 2: " + fetchOrder(2));
             for (String arg : args)
             {
-                
+
             }
         } catch (OrderSampleException ex)
         {

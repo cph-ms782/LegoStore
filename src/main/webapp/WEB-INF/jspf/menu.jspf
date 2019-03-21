@@ -4,8 +4,8 @@
         <ul class="sm sm-blue">
             <li><a href="FrontController?command=NewOrderCommand">Byg hus </a>
             </li>
-            <li><a href="#">Se ordrer </a>
-                <ul>
+            <li><a href="FrontController?command=CheckOrderCommand">Se ordrer </a>
+<!--                <ul>
                     <li><a href="#">Gizmos </a>
                         <ul>
                             <li><a href="#">Gizmo Basic</a></li>
@@ -13,7 +13,7 @@
                             <li><a href="#">Gizmo Supreme</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>-->
             </li>
         </ul>
 

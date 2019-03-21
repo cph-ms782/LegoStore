@@ -13,7 +13,7 @@
     <body>        
         <%@ include file = "jspf/body.jspf" %>
         <div id="mainInfo">Hello <%=request.getParameter("email")%><br>
-            <p> You are now logged in as a customer of our wonderful site. </p>
+            <p> You are now logged in as a employee of our wonderful site. </p>
         </div>
     </body>
 </html>

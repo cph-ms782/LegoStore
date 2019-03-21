@@ -69,6 +69,14 @@
 
 <div id="mainInfo">
     <p></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <!--Inserting place for user invoice table-->
+                <table id="mainTable" ></table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="orderInfo">

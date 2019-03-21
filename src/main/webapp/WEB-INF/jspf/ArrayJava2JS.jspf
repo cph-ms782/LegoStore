@@ -1,0 +1,14 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+orderArray = [
+<% for (int i = 0; i < orders.getOrders().size(); i++)
+    {
+        userID = "" + orders.getOrders().get(i).getUserID();
+        shipped = "" + orders.getOrders().get(i).isShipped();
+%>
+[
+'<%=userID%>'
+, '<%= shipped%>']
+<%= i + 1 < orders.getOrders().size() ? "," : ""%>
+<%}%>
+];
