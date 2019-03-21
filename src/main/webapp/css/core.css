@@ -182,24 +182,28 @@ html, body {
 
 #orderInfoBox {
     padding: 5px;
-    border:2px solid #4CAF50;
-    background-color: gainsboro;
+    border: 2px solid #4CAF50;
     color: black;
-    font-family: 'Titan One', cursive;
     font-size:10px;
     width:100%;
     position: absolute;
     right: 50px;
     height: auto;
     width: auto;
+    background-color: gainsboro;
+    background-image: url("../img/lego_house.jpg");
 }
 
 .orderInfo p {
+    font-family: 'Times New Roman', cursive;
     display: inline-block;
-    font-size: 45px;
+    color: black;
+    text-shadow: 3px 3px 5px white;
+    font-size: 40px;
 }
 
 #orderInfoHeader {
+    font-family: 'Times New Roman', cursive;
     text-shadow: 2px 2px 4px #000;
     font-size: 55px;
 }
