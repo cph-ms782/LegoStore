@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic.DTO;
 
 /**
@@ -11,5 +6,43 @@ package Logic.DTO;
  */
 public class Bricks
 {
+    private int fourBrick = 0;
+    private int twoBrick = 0;
+    private int oneBrick = 0;
+
+    public Bricks()
+    {
+    }
+
+    public int getFourBrick()
+    {
+        return fourBrick;
+    }
+
+    public int getTwoBrick()
+    {
+        return twoBrick;
+    }
+
+    public int getOneBrick()
+    {
+        return oneBrick;
+    }
+
+    public void addFourBricks(int fourBrick)
+    {
+        this.fourBrick += fourBrick;
+    }
+
+    public void addTwoBricks(int twoBrick)
+    {
+        this.twoBrick += twoBrick;
+    }
+
+    public void addOneBricks(int oneBrick)
+    {
+        this.oneBrick += oneBrick;
+    }
+
     
 }

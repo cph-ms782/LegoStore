@@ -1,5 +1,7 @@
 package Logic;
 
+import Logic.DTO.Bricks;
+
 /**
  *
  * @author martin
@@ -7,25 +9,21 @@ package Logic;
 public class calcHouse
 {
 
-    int fourBrick = 0;
-    int twoBrick = 0;
-    int oneBrick = 0;
-
-    public void calcSide(int length)
+    public static Bricks calcSide(int length)
     {
-        fourBrick += length / 4;
+        Bricks bricks = new Bricks();
+        
+        bricks.addFourBricks(length / 4);
         int rem = length % 4;
-        System.out.println("4-Brick, remainder: " + fourBrick + ", " + rem);
 
-        twoBrick += rem / 2;
+        bricks.addTwoBricks(rem / 2);
         rem = rem % 2;
-        System.out.println("2-Brick, remainder: " + twoBrick + ", " + rem);
 
-        oneBrick += rem;
-        System.out.println("1-Brick, remainder: " + oneBrick + ", " + 0);
+        bricks.addTwoBricks(rem);
+        return bricks;
     }
 
-    public void calc(int length, int width, int height)
+    public static void calc(int length, int width, int height)
     {
         // minus two because next wallside start at end of this side
         int longSide = length - 2;
@@ -38,7 +36,7 @@ public class calcHouse
             calcSide(shortSide);
             calcSide(shortSide);
         }
-        
+
     }
 
     public static void main(String[] args)
