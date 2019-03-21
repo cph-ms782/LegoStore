@@ -60,4 +60,15 @@ public class OrderMapper_Dummy
         return orders;
     }
 
+    public static List<Order> findOrders(int userID) throws OrderSampleException
+    {
+        List<Order> userOrderList=new ArrayList<>();
+        for (Order order : orders)
+        {
+            if(userID == order.getUserID()){
+                userOrderList.add(order);
+            }
+        }
+        return userOrderList;
+    }
 }

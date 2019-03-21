@@ -18,13 +18,16 @@ public class CheckOrderCommand extends Command
         try
         {
             String changeShipped = (String) request.getParameter("orderSent");
-            boolean isShipped=false;
-            if("true".equals(changeShipped)){
-                isShipped=true;
-            }
-            String seeOrder = (String) request.getParameter("seeOrder");
+            boolean isShipped = false;
+            boolean isEmployee = false;
             boolean isOrder = false;
             int orderID = 0;
+
+            if ("true".equals(changeShipped))
+            {
+                isShipped = true;
+            }
+            String seeOrder = (String) request.getParameter("seeOrder");
             if ("true".equals(seeOrder))
             {
                 isOrder = true;
@@ -36,16 +39,29 @@ public class CheckOrderCommand extends Command
             }
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
+            String role = (String) session.getAttribute("role");
+            if (role != null && role.equals("employee"))
+            {
+                isEmployee = true;
+            }
 
             try
             {
                 //Save and fill order with orderID
-                session.setAttribute("orders",
-                        LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
+                if (isEmployee)
+                {
+                    session.setAttribute("orders",
+                            LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
+                } else
+                {
+                    session.setAttribute("orders",
+                            LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
+                }
                 if (isOrder && orderID > 0)
                 {
                     Order o = LogicFacade.fetchOrder(orderID);
-                    if(isShipped){
+                    if (isShipped)
+                    {
                         LogicFacade.setOrderAsShipped(o);
                     }
                     session.setAttribute("order", o);

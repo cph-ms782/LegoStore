@@ -46,15 +46,15 @@ public class LogicFacade
     {
         return OrderMapper_Dummy.findOrder(orderId, "order");
     }
-
-    public static Order fetchUserOrder(int userId) throws OrderSampleException
-    {
-        return OrderMapper_Dummy.findOrder(userId, "user");
-    }
     
     public static List<Order> fetchOrders() throws OrderSampleException
     {
         return OrderMapper_Dummy.findOrders();
+    }
+
+    public static List<Order> fetchOrders(int userId) throws OrderSampleException
+    {
+        return OrderMapper_Dummy.findOrders(userId);
     }
 
     public static Order setOrderAsShipped(Order order)
