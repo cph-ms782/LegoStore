@@ -66,11 +66,22 @@
 
                 $('#mainTable:has(td)').click(function (e)
                 {
-                    var clickedCell;
-                    clickedRow = $(e.target).closest('tr');
-                    var value = clickedRow.find('td:eq(0)').text();
 
-                    var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
+                    var clickedCell = $(e.target).closest('td');
+                    var clickedRow = $(e.target).closest('tr');
+                    var value = clickedRow.find('td:eq(0)').text();
+//                    var isShipped = clickedRow.find('td:eq(1)').text();
+                    if (clickedCell.text() == 'false')
+                    {
+                        var r = confirm("Er varen afsendt?");
+                        if (r == true)
+                        {
+                            var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderSent=true&orderID=' + value;
+                        }
+                    } else
+                    {
+                        var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
+                    }
                     window.location.href = url;
                 }); // end mouseover
             }); // end ready

@@ -17,6 +17,11 @@ public class CheckOrderCommand extends Command
     {
         try
         {
+            String changeShipped = (String) request.getParameter("orderSent");
+            boolean isShipped=false;
+            if("true".equals(changeShipped)){
+                isShipped=true;
+            }
             String seeOrder = (String) request.getParameter("seeOrder");
             boolean isOrder = false;
             int orderID = 0;
@@ -40,6 +45,9 @@ public class CheckOrderCommand extends Command
                 if (isOrder && orderID > 0)
                 {
                     Order o = LogicFacade.fetchOrder(orderID);
+                    if(isShipped){
+                        LogicFacade.setOrderAsShipped(o);
+                    }
                     session.setAttribute("order", o);
                     session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
                 } else
