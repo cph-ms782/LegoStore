@@ -74,11 +74,15 @@ html, body {
     width: 400px;
 }
 
+#reglogin {
+    position: absolute;
+}
+
 #login {
+    top: 0px;
+    left: 400px;
     width: 310px;
     position: absolute;
-    left: 400px;
-    top: 0px;
     z-index: 100;
     background-color: rgb(27,45,94);
     border-radius: 0 0 5px 5px;
@@ -138,7 +142,7 @@ html, body {
     position: relative;
     width: 310px;
     left: 400px;
-    top: 185px;
+    top: 205px;
     z-index: 100;
     background-color: rgb(27,45,94);
     border-radius: 5px 5px 5px 5px;
@@ -153,7 +157,7 @@ html, body {
     color: white;
     font-weight: bold;
     width: 100px;
-    text-align:right;
+    text-align: right;
     margin: 0 15px 0 0;
     display: inline-block;
 }
@@ -200,6 +204,20 @@ html, body {
     color: yellow;
     text-shadow: 3px 3px 5px #000;
     font-size: 40px;
+}
+
+#newHouseForm label {
+    font-size: .75em;
+    color: black;
+    font-weight: bold;
+    width: 100px;
+    text-align: right;
+    margin: 0 15px 0 0;
+    display: inline-block;
+}
+#newHouseForm input[type="text"] {
+    font-size: 14px;
+    width: 140px;	
 }
 
 .orderInfo li {

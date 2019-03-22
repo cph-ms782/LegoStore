@@ -27,63 +27,68 @@ public class CheckOrderCommand extends Command
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             String role = (String) session.getAttribute("role");
-
-            if ("true".equals(changeShipped))
+            if (user != null)
             {
-                isShipped = true;
-            }
-
-            String seeOrder = (String) request.getParameter("seeOrder");
-            if ("true".equals(seeOrder))
-            {
-                isOrder = true;
-            }
-
-            Object oID = request.getParameter("orderID");
-            if (oID != null)
-            {
-                orderID = Integer.parseInt(request.getParameter("orderID"));
-            }
-
-            if (role != null && role.equals("employee"))
-            {
-                isEmployee = true;
-            }
-
-            try
-            {
-                //Save and fill order with orderID
-                if (isEmployee)
+                if ("true".equals(changeShipped))
                 {
-                    session.setAttribute("orders",
-                            LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
-                } else
-                {
-                    session.setAttribute("orders",
-                            LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
+                    isShipped = true;
                 }
-                if (isOrder && orderID > 0)
+
+                String seeOrder = (String) request.getParameter("seeOrder");
+                if ("true".equals(seeOrder))
                 {
-                    Order o = LogicFacade.fetchOrder(orderID);
-                    Bricks bricks = calcHouse.calc(o.getHeight(),
-                            o.getWidth(), o.getHeight());
-                    if (isShipped)
+                    isOrder = true;
+                }
+
+                Object oID = request.getParameter("orderID");
+                if (oID != null)
+                {
+                    orderID = Integer.parseInt(request.getParameter("orderID"));
+                }
+
+                if (role != null && role.equals("employee"))
+                {
+                    isEmployee = true;
+                }
+
+                try
+                {
+                    //Save and fill order with orderID
+                    if (isEmployee)
                     {
-                        LogicFacade.setOrderAsShipped(o);
+                        session.setAttribute("orders",
+                                LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
+                    } else
+                    {
+                        session.setAttribute("orders",
+                                LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
                     }
-                    session.setAttribute("bricks", bricks);
-                    session.setAttribute("order", o);
-                    session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
-                } else
+                    if (isOrder && orderID > 0)
+                    {
+                        Order o = LogicFacade.fetchOrder(orderID);
+                        Bricks bricks = calcHouse.calc(o.getHeight(),
+                                o.getWidth(), o.getHeight());
+                        if (isShipped)
+                        {
+                            LogicFacade.setOrderAsShipped(o);
+                        }
+                        session.setAttribute("bricks", bricks);
+                        session.setAttribute("order", o);
+                        session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
+                    } else
+                    {
+                        session.setAttribute("bricks", null);
+                        session.setAttribute("order", null);
+                        session.setAttribute("orderUser", null);
+                    }
+                } catch (OrderSampleException ex)
                 {
-                    session.setAttribute("bricks", null);
-                    session.setAttribute("order", null);
-                    session.setAttribute("orderUser", null);
+                    throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
+                            + ex.getMessage());
                 }
-            } catch (OrderSampleException ex)
+            } else
             {
-                throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
-                        + ex.getMessage());
+                throw new LoginSampleException("Du er automatisk blevet logget ud. Log ind igen for at fortsætte");
             }
         } catch (NumberFormatException ex)
         {

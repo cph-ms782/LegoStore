@@ -59,7 +59,7 @@ public class UserMapper_DB
                 return user;
             } else
             {
-                throw new LoginSampleException("Kunne ikke finde bruges");
+                throw new LoginSampleException("Kunne ikke finde bruger");
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
