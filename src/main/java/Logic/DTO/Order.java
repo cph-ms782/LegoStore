@@ -78,6 +78,12 @@ public class Order
         return Shipped;
     }
 
+    /**
+     * Used with OrderMapper_Dummy
+     * OrderMapper_DB uses DB to set shipped
+     * 
+     * @param Shipped 
+     */
     public void setShipped(boolean Shipped)
     {
         this.Shipped = Shipped;

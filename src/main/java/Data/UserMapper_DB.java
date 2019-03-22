@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class UserMapper_DB
 {
 
-    public static void createUser(User user) throws LoginSampleException
+    public static User createUser(User user) throws LoginSampleException
     {
         try
         {
@@ -31,9 +31,11 @@ public class UserMapper_DB
             ids.next();
             int id = ids.getInt(1);
             user.setID(id);
+            return user;
         } catch (SQLException | ClassNotFoundException ex)
         {
-            throw new LoginSampleException(ex.getMessage());
+            throw new LoginSampleException("Der skete en fejl. Forsøg med en anden email"
+                    + " adresse...." +ex.getMessage());
         }
     }
 
