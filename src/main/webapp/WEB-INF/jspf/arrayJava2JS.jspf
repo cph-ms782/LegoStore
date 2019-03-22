@@ -1,0 +1,61 @@
+<%@page import="Logic.DTO.OrderList"%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+    OrderList orders = (OrderList) session.getAttribute("orders");
+    boolean isOrdersObject = false;
+    if (orders != null && orders.getOrders() != null
+            && orders.getOrders().size() > 0)
+    {
+        isOrdersObject = true;
+        String userID;
+        String shipped;
+
+        //                make javascript array
+%>
+$(document).ready(function ()
+{
+header = ['Ordre Nummer', 'Afsendt'];
+
+//      making JS array from java
+orderArray = [
+<% for (int i = 0; i < orders.getOrders().size(); i++)
+    {
+        userID = "" + orders.getOrders().get(i).getOrderID();
+        shipped = "" + orders.getOrders().get(i).isShipped();
+%>
+[
+'<%=userID%>'
+, '<%= shipped%>']
+<%= i + 1 < orders.getOrders().size() ? "," : ""%>
+<%}%>
+];
+createTable(header, orderArray, 'mainTable');
+$('#mainTable:has(td)').mouseover(function (e)
+{
+$(this).css('cursor', 'crosshair');
+}); // end mouseover
+
+$('#mainTable:has(td)').click(function (e)
+{
+
+var clickedCell = $(e.target).closest('td');
+var clickedRow = $(e.target).closest('tr');
+var value = clickedRow.find('td:eq(0)').text();
+<%if (isEmployee)
+    { %>
+if (clickedCell.text() == 'false')
+{
+var r = confirm("Er varen afsendt?");
+if (r == true)
+{
+var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderSent=true&orderID=' + value;
+window.location.href = url;
+return;
+}
+}
+<%}%>
+var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
+window.location.href = url;
+}); // end mouseover
+
+}); // end ready

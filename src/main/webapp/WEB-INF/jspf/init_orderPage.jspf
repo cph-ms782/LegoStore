@@ -1,0 +1,59 @@
+<%@page import="Logic.DTO.Bricks"%>
+<%@page import="Logic.DTO.User"%>
+<%@page import="Logic.DTO.Order"%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+    Order order = (Order) session.getAttribute("order");
+    User user = (User) session.getAttribute("user");
+    User orderUser = (User) session.getAttribute("orderUser");
+    String role = (String) session.getAttribute("role");
+    Bricks bricks = (Bricks) session.getAttribute("bricks");
+    String userName = null;
+    boolean isOrderUserObject = false;
+    boolean isOrderObject = false;
+    boolean isUserObject = false;
+    boolean isEmployee = false;
+    int length = 0;
+    int width = 0;
+    int height = 0;
+    int orderID = 0;
+    int fourBricks = 0;
+    int twoBricks = 0;
+    int oneBricks = 0;
+    boolean isShipped = false;
+
+    if (role != null && role.equals("employee"))
+    {
+        isEmployee = true;
+    }
+
+    if (user != null)
+    {
+        userName = user.getEmail();
+        isUserObject = true;
+    }
+    
+    if (orderUser != null)
+    {
+        userName = orderUser.getEmail();
+        isOrderUserObject = true;
+    }
+    
+    if (bricks != null)
+    {
+        fourBricks = bricks.getFourBrick();
+        twoBricks = bricks.getTwoBrick();
+        oneBricks = bricks.getOneBrick();
+    }
+
+    if (order != null)
+    {
+        length = order.getLength();
+        width = order.getWidth();
+        height = order.getHeight();
+
+        orderID = order.getOrderID();
+        isShipped = order.isShipped();
+        isOrderObject = true;
+    }
+%>

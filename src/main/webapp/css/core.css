@@ -81,7 +81,7 @@ html, body {
 #login {
     top: 0px;
     left: 400px;
-    width: 310px;
+    width: 300px;
     position: absolute;
     z-index: 100;
     background-color: rgb(27,45,94);
@@ -140,9 +140,9 @@ html, body {
 
 #registerDiv {
     position: relative;
-    width: 310px;
+    width: 300px;
     left: 400px;
-    top: 205px;
+    top: 220px;
     z-index: 100;
     background-color: rgb(27,45,94);
     border-radius: 5px 5px 5px 5px;
