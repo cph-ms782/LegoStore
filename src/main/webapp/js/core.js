@@ -1,3 +1,9 @@
+/**
+ * javascript that makes the login and registration go up and down
+ * 
+ * @type type
+ */
+
 $(document).ready(function ()
 {
 

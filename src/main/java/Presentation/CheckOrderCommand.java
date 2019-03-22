@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * command for handling orders when user wants to see a list of orders
+ * 
+ * @author martin
+ */
 public class CheckOrderCommand extends Command
 {
 

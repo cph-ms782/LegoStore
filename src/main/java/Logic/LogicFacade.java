@@ -10,20 +10,37 @@ import Logic.DTO.OrderList;
 import java.util.List;
 
 /**
- * The purpose of LogicFacade is to...
+ * facade for handling traffic between data and logic and between logic and presentation
  *
- * @author kasper
+ * @author kasper and martin bøgh
  */
 public class LogicFacade
 {
 
 //    private static OrderMapper_Dummy orders = new OrderMapper_Dummy();
 //    private static UserMapper_DB users = new UserMapper_DB();
+    
+    /**
+     * return a User object when given email and password Strings
+     * 
+     * @param email
+     * @param password
+     * @return User object
+     * @throws LoginSampleException 
+     */
     public static User login(String email, String password) throws LoginSampleException
     {
         return UserMapper_DB.login(email, password);
     }
 
+    
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return
+     * @throws LoginSampleException 
+     */
     public static User createUser(String email, String password) throws LoginSampleException
     {
         User user = new User(email, password, "customer");
@@ -31,31 +48,73 @@ public class LogicFacade
         return user;
     }
 
+    
+    /**
+     * 
+     * @param userID
+     * @return
+     * @throws LoginSampleException 
+     */
     public static User fetchUser(int userID) throws LoginSampleException
     {
         return UserMapper_DB.getUser(userID);
     }
 
+    
+    /**
+     * 
+     * @param order
+     * @return
+     * @throws OrderSampleException 
+     */
     public static Order createOrder(Order order) throws OrderSampleException
     {
         return OrderMapper_DB.createOrder(order);
     }
 
+    
+    /**
+     * 
+     * @param orderId
+     * @return
+     * @throws OrderSampleException 
+     */
     public static Order fetchOrder(int orderId) throws OrderSampleException
     {
         return OrderMapper_DB.findOrder(orderId, "order");
     }
 
+    
+    /**
+     * 
+     * @return
+     * @throws OrderSampleException 
+     */
     public static List<Order> fetchOrders() throws OrderSampleException
     {
         return OrderMapper_DB.findOrders();
     }
 
+    
+    /**
+     * 
+     * @param userId
+     * @return
+     * @throws OrderSampleException 
+     */
     public static List<Order> fetchOrders(int userId) throws OrderSampleException
     {
         return OrderMapper_DB.findOrders(userId);
     }
 
+    
+    /**
+     * changes an orders status in database
+     * 
+     * @param order
+     * @return Order object
+     * @throws OrderSampleException 
+     */
     public static Order setOrderAsShipped(Order order) throws OrderSampleException
     {
         OrderMapper_DB.changeShipping(order.getOrderID());
@@ -65,26 +124,17 @@ public class LogicFacade
         return order;
     }
 
+    
+    /**
+     * wrap list of Order's in OrderList object (for storing in session later)
+     * 
+     * @param orders
+     * @return Orderlist object
+     */
     public static OrderList fillOrderList(List<Order> orders)
     {
         OrderList ol = new OrderList();
         ol.setOrders(orders);
         return ol;
-    }
-
-    public static void main(String[] args) throws LoginSampleException, OrderSampleException
-    {
-//            User u = createUser("hansine@jeppesen.dk", "1234");
-//            System.out.println("createUser User: " + u.toString());
-        User u = login("hansine@jeppesen.dk", "1234");
-        System.out.println("Login User: " + u.toString());
-
-        for (Order fetchOrder : fetchOrders())
-        {
-            System.out.println(fetchOrder.toString());
-        }
-        System.out.println("Order 4: " + fetchOrder(4));
-        setOrderAsShipped(fetchOrder(4));
-        System.out.println("Order 4: " + fetchOrder(4));
     }
 }

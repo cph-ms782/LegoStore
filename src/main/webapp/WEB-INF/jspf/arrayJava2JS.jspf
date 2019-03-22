@@ -1,3 +1,10 @@
+<%-- 
+    Document   : arrayJava2JS.jsp
+    Function   : Makes JS arrays and some mouseover and click events
+    Created on : Mar, 2019
+    Author     : martin bøgh
+--%>
+
 <%@page import="Logic.DTO.OrderList"%>
 <%@ page pageEncoding="UTF-8" %>
 <%

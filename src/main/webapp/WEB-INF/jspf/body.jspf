@@ -1,3 +1,5 @@
+<!--body html that will go on all pages-->
+
 <%@ page pageEncoding="UTF-8" %>
 
 <div id="headerTopDiv">

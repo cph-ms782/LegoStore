@@ -8,11 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * command for handling a new order
+ * 
+ * @author martin
+ */
 public class FinishedOrderCommand extends Command
 {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException
+    String execute(HttpServletRequest request, HttpServletResponse response) throws OrderSampleException
     {
         try
         {
@@ -41,11 +46,11 @@ public class FinishedOrderCommand extends Command
                 }
             } catch (OrderSampleException ex)
             {
-                ex.printStackTrace();
+                throw new OrderSampleException("Der er sket en fejl i håndteringen af den nye ordre" + ex.getMessage());
             }
         } catch (NumberFormatException ex)
         {
-            throw new NumberFormatException("Ikke alle indtastede værdier var hele tal");
+            throw new OrderSampleException("Ikke alle indtastede værdier var hele tal: " + ex.getMessage());
         }
         return "orderpage";
     }
