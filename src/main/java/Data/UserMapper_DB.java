@@ -21,7 +21,7 @@ public class UserMapper_DB
         try
         {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO Users (email, password, role) VALUES (?, ?, ?)";
+            String SQL = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
@@ -42,7 +42,7 @@ public class UserMapper_DB
         try
         {
             Connection con = Connector.connection();
-            String SQL = "SELECT id, role FROM Users "
+            String SQL = "SELECT id, role FROM user "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, email);
@@ -50,10 +50,38 @@ public class UserMapper_DB
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
-                String role = rs.getString("role");
                 int id = rs.getInt("id");
+                String role = rs.getString("role");
                 User user = new User(email, password, role);
                 user.setID(id);
+                return user;
+            } else
+            {
+                throw new LoginSampleException("Could not validate user");
+            }
+        } catch (ClassNotFoundException | SQLException ex)
+        {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    public static User getUser(int userID) throws LoginSampleException
+    {
+        try
+        {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user "
+                    + "WHERE id=?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String role = rs.getString("role");
+                User user = new User(email, password, role);
+                user.setID(userID);
                 return user;
             } else
             {

@@ -19,22 +19,22 @@ public class LogicFacade
 {
 
     private static OrderMapper_Dummy orders = new OrderMapper_Dummy();
-    private static UserMapper_Dummy users = new UserMapper_Dummy();
+    private static UserMapper_DB users = new UserMapper_DB();
 
     public static User login(String email, String password) throws LoginSampleException
     {
-        return UserMapper_Dummy.login(email, password);
+        return UserMapper_DB.login(email, password);
     }
 
     public static User createUser(String email, String password) throws LoginSampleException
     {
         User user = new User(email, password, "customer");
-        UserMapper_Dummy.createUser(user);
+        UserMapper_DB.createUser(user);
         return user;
     }
 
     public static User fetchUser(int userID) throws LoginSampleException{
-        return UserMapper_Dummy.getUser(userID);
+        return UserMapper_DB.getUser(userID);
     }
     
     public static Order CreateOrder(Order order) throws OrderSampleException

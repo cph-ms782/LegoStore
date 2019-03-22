@@ -12,8 +12,9 @@
     </head>
     <body>
         <%@ include file = "jspf/body.jspf" %>
-        <div id="mainInfo">Hello <%=request.getParameter("email")%><br>
-            <p> You are now logged in as a customer of our wonderful site. </p>
+        <div id="mainInfo">Hej <%=request.getParameter("email")%><br>
+            <p> Velkommen som ny bruger på vores side.</p>
+            <p> Vil du købe et nyt hus eller se tidligere ordrer.</p>
         </div>
     </body>
 </html>

@@ -5,10 +5,10 @@
         <img src="img/lego_brick.gif" alt="legoBrick">
         <h1 id="headerText">
             <span id="legoText">
-                <span>L</span>
-                <span>E</span>
-                <span>G</span>
-                <span>O</span>
+                <span style="color: yellow;">L</span>
+                <span style="color: blue;">E</span>
+                <span style="color: red;">G</span>
+                <span style="color: green;">O</span>
             </span>
             Store
         </h1>

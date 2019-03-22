@@ -14,7 +14,7 @@ html, body {
     animation: bounce .5s ease infinite alternate;
     font-family: 'Titan One', cursive;
     font-size: 100px;
-    color: #FFF;
+/*    color: #FFF;*/
     left: 10px;
     text-shadow: 0 1px 0 #CCC,
         0 2px 0 #CCC,
@@ -35,15 +35,15 @@ html, body {
 @keyframes bounce {
     100% {
         top: -20px;
-        text-shadow: 0 1px 0 #CCC,
-            0 2px 0 #CCC,
-            0 3px 0 #CCC,
-            0 4px 0 #CCC,
-            0 5px 0 #CCC,
-            0 6px 0 #CCC,
-            0 7px 0 #CCC,
-            0 8px 0 #CCC,
-            0 9px 0 #CCC,
+        text-shadow: 0 1px 0 lightblue,
+            0 2px 0 lightblue,
+            0 3px 0 lightblue,
+            0 4px 0 lightblue,
+            0 5px 0 lightblue,
+            0 6px 0 lightblue,
+            0 7px 0 lightblue,
+            0 8px 0 lightblue,
+            0 9px 0 lightblue,
             0 50px 25px rgba(0, 0, 0, .2);
     }
 }
