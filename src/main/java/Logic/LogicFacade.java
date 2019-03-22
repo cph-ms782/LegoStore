@@ -1,15 +1,11 @@
 package Logic;
 
 import Data.OrderMapper_DB;
-import Data.OrderMapper_Dummy;
 import Logic.DTO.User;
 import Data.UserMapper_DB;
-import Data.UserMapper_Dummy;
 import Logic.DTO.Order;
 import Logic.DTO.OrderList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The purpose of LogicFacade is to...
@@ -21,7 +17,6 @@ public class LogicFacade
 
 //    private static OrderMapper_Dummy orders = new OrderMapper_Dummy();
 //    private static UserMapper_DB users = new UserMapper_DB();
-
     public static User login(String email, String password) throws LoginSampleException
     {
         return UserMapper_DB.login(email, password);
@@ -34,11 +29,12 @@ public class LogicFacade
         return user;
     }
 
-    public static User fetchUser(int userID) throws LoginSampleException{
+    public static User fetchUser(int userID) throws LoginSampleException
+    {
         return UserMapper_DB.getUser(userID);
     }
-    
-    public static Order CreateOrder(Order order) throws OrderSampleException
+
+    public static Order createOrder(Order order) throws OrderSampleException
     {
         return OrderMapper_DB.createOrder(order);
     }
@@ -47,7 +43,7 @@ public class LogicFacade
     {
         return OrderMapper_DB.findOrder(orderId, "order");
     }
-    
+
     public static List<Order> fetchOrders() throws OrderSampleException
     {
         return OrderMapper_DB.findOrders();
@@ -64,7 +60,6 @@ public class LogicFacade
 
 //        Used with OrderMapper_Dummy
 //        order.setShipped(true);
-
         return order;
     }
 
@@ -75,29 +70,19 @@ public class LogicFacade
         return ol;
     }
 
-    public static void main(String[] args) throws LoginSampleException
+    public static void main(String[] args) throws LoginSampleException, OrderSampleException
     {
-        try
-        {
 //            User u = createUser("hansine@jeppesen.dk", "1234");
 //            System.out.println("createUser User: " + u.toString());
-            User u = login("hansine@jeppesen.dk", "1234");
-            System.out.println("Login User: " + u.toString());
+        User u = login("hansine@jeppesen.dk", "1234");
+        System.out.println("Login User: " + u.toString());
 
-            for (Order fetchOrder : fetchOrders())
-            {
-                System.out.println(fetchOrder.toString());
-            }
-            System.out.println("Order 4: " + fetchOrder(4));
-            setOrderAsShipped(fetchOrder(4));
-            System.out.println("Order 4: " + fetchOrder(4));
-            for (String arg : args)
-            {
-
-            }
-        } catch (OrderSampleException ex)
+        for (Order fetchOrder : fetchOrders())
         {
-            Logger.getLogger(LogicFacade.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(fetchOrder.toString());
         }
+        System.out.println("Order 4: " + fetchOrder(4));
+        setOrderAsShipped(fetchOrder(4));
+        System.out.println("Order 4: " + fetchOrder(4));
     }
 }

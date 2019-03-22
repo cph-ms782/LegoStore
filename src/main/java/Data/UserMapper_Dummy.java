@@ -49,18 +49,18 @@ public class UserMapper_Dummy
                 return user;
             }
         }
-        throw new LoginSampleException("No user found");
+        return null;
     }
 
     public static User getUser(int userID) throws LoginSampleException
     {
         for (User user : users)
         {
-            if (user.getID()==(userID))
+            if (user.getID() == (userID))
             {
                 return user;
             }
         }
-        throw new LoginSampleException("No user found");
+        return null;
     }
 }

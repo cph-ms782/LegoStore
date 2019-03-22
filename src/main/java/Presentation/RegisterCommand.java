@@ -3,6 +3,7 @@ package Presentation;
 import Logic.LogicFacade;
 import Logic.LoginSampleException;
 import Logic.DTO.User;
+import Logic.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpSession;
 public class RegisterCommand extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+    String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException, OrderSampleException {
         String email = request.getParameter( "email" );
         String password1 = request.getParameter( "password1" );
         String password2 = request.getParameter( "password2" );
@@ -21,7 +22,7 @@ public class RegisterCommand extends Command {
             session.setAttribute( "role", user.getRole() );
             return user.getRole() + "page";
         } else {
-            throw new LoginSampleException( "the two passwords did not match" );
+            throw new LoginSampleException("De to kodeord passer ikke sammen");
         }
     }
 

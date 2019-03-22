@@ -1,7 +1,6 @@
 package Data;
 
 import Logic.DTO.Order;
-import Logic.LoginSampleException;
 import Logic.OrderSampleException;
 import java.util.List;
 

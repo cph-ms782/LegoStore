@@ -52,7 +52,7 @@ public class OrderMapper_Dummy
                 return order;
             }
         }
-        throw new OrderSampleException("No order found");
+        return null;
     }
 
     public static List<Order> findOrders() throws OrderSampleException

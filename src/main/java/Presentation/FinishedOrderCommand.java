@@ -1,7 +1,7 @@
 package Presentation;
 
-import Logic.DTO.Order;
 import Logic.LogicFacade;
+import Logic.DTO.Order;
 import Logic.DTO.User;
 import Logic.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ public class FinishedOrderCommand extends Command
             try
             {
                 //Save and fill order with orderID
-                order = LogicFacade.CreateOrder(order);
+                order = LogicFacade.createOrder(order);
                 if ("employee".equals(user.getRole()))
                 {
                     session.setAttribute("orders",

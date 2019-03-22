@@ -59,7 +59,7 @@ public class UserMapper_DB
                 return user;
             } else
             {
-                throw new LoginSampleException("Could not validate user");
+                throw new LoginSampleException("Kunne ikke finde bruges");
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
@@ -87,11 +87,11 @@ public class UserMapper_DB
                 return user;
             } else
             {
-                throw new LoginSampleException("Could not validate user");
+                throw new LoginSampleException("Kunne ikke finde bruger");
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
-            throw new LoginSampleException(ex.getMessage());
+            throw new LoginSampleException("Kunne ikke finde bruger" + ex.getMessage());
         }
     }
 

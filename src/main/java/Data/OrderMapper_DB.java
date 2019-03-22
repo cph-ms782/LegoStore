@@ -23,7 +23,7 @@ public class OrderMapper_DB
         try
         {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO order (userid, length, width, height, shipped) VALUES (?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO `order` (userid, length, width, height, shipped) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getUserID());
             ps.setInt(2, order.getLength());
@@ -38,10 +38,18 @@ public class OrderMapper_DB
             return order;
         } catch (SQLException | ClassNotFoundException ex)
         {
-            throw new OrderSampleException(ex.getMessage());
+            throw new OrderSampleException("Kunne ikke skabe ny ordre: " + ex.getMessage());
         }
     }
 
+    /**
+     * Find and return one order object.
+     *
+     * @param id id number (either orderID or userID - see below)
+     * @param idType Either "user" or "order"
+     * @return
+     * @throws OrderSampleException
+     */
     public static Order findOrder(int id, String idType) throws OrderSampleException
     {
         try
@@ -76,7 +84,7 @@ public class OrderMapper_DB
                 return order;
             } else
             {
-                throw new OrderSampleException("Could not find order");
+                throw new OrderSampleException("Kunne ikke finde ny ordre");
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
@@ -112,12 +120,19 @@ public class OrderMapper_DB
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
-            throw new OrderSampleException(ex.getMessage());
+            throw new OrderSampleException("Der skete en fejl da liste af ordre skulle samles: " + ex.getMessage());
         }
 
         return orders;
     }
 
+    /**
+     * Find and return a list of orders from one customer
+     *
+     * @param userID
+     * @return
+     * @throws OrderSampleException
+     */
     public static List<Order> findOrders(int userID) throws OrderSampleException
     {
         List<Order> userOrderList = new ArrayList<>();
@@ -136,13 +151,13 @@ public class OrderMapper_DB
         try
         {
             Connection con = Connector.connection();
-            String SQL = "UPDATE `legostore`.`order` SET `shipped` = '1' WHERE (`orderid` = ?)";
+            String SQL = "UPDATE `order` SET `shipped` = '1' WHERE (`orderid` = ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, orderID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex)
         {
-            throw new OrderSampleException(ex.getMessage());
+            throw new OrderSampleException("Der skete en fejl da Afsendelses-status skulle ændres i DB: " + ex.getMessage());
         }
     }
 
