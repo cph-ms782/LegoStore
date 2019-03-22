@@ -14,7 +14,7 @@ html, body {
     animation: bounce .5s ease infinite alternate;
     font-family: 'Titan One', cursive;
     font-size: 100px;
-/*    color: #FFF;*/
+    /*    color: #FFF;*/
     left: 10px;
     text-shadow: 0 1px 0 #CCC,
         0 2px 0 #CCC,
@@ -75,7 +75,7 @@ html, body {
 }
 
 #login {
-    width: 300px;
+    width: 310px;
     position: absolute;
     left: 400px;
     top: 0px;
@@ -87,22 +87,23 @@ html, body {
 #login a {
     text-decoration: none;
 }
-#open {
+#openLogin {
     margin: 0;
     cursor: pointer;
     background-image:  url(../img/open.png);
     background-repeat: no-repeat;
     background-position:  8px 7px;
     color: white;
+    text-align: left;
     padding: 5px 0 5px 30px;
     border-radius: 0 0 5px 5px;
 }
 
-#login .close {
+#login .closing {
     background-image: url(../img/close.png);
 }
 
-#open:hover {
+#openLogin:hover {
     color: rgb(0,0,0);
     background-color: rgb(200,200,200);	
 }
@@ -135,12 +136,12 @@ html, body {
 
 #registerDiv {
     position: relative;
-    width: 450px;
+    width: 310px;
     left: 400px;
-    top: 176px;
+    top: 185px;
     z-index: 100;
     background-color: rgb(27,45,94);
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px 5px 5px 5px;
 }
 
 #registerDiv form {
@@ -205,7 +206,7 @@ html, body {
     font-family: 'Times New Roman', cursive;
     color: black;
     text-shadow: 3px 3px 5px white;
-text-align: center;
+    text-align: center;
     font-size: 60px;
 }
 

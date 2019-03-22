@@ -2,24 +2,24 @@ $(document).ready(function ()
 {
 
 //  ####  Login  ####
-    $('#open').click(function (evt)
+    $('#openLogin').click(function (evt)
     {
         evt.preventDefault();
         $('#login form').slideToggle(300);
         $('#registerButton').slideToggle(300);
-        $(this).toggleClass('close');
+        $(this).toggleClass('closing');
     }); // end click
 
 //  ####  Registration  ####
     $('#registerButton').click(function (evt)
     {
         $('#registerDiv form').slideToggle(300);
-        $('#open').toggleClass('close');
+        $('#openLogin').toggleClass('closing');
     }); // end click
 
     $('#sendRegisterButton').click(function ()
     {
-        $('#open').toggleClass('close');
+        $('#openLogin').toggleClass('closing');
     });
 
 
@@ -35,31 +35,4 @@ $(document).ready(function ()
         }
     });
 
-//  ####  Shopping Cart  ####
-    $('#dashboard').click(
-            function ()
-            {
-                // First anon function                    
-                $(this).stop().animate(
-                        {
-                            top: '0',
-                            backgroundColor: 'rgba(27,45,94,1)'},
-                        1875, 'easeOutElastic'
-                        ); // end animate
-
-                // First anon function end               
-            }, function ()
-    {
-        // Second anon function                    
-        $(this).stop().animate(
-                {
-                    top: '-32px',
-                    backgroundColor: 'rgb(255,211,224)'
-                }, 1500, 'easeOutBounce'
-
-                ); // end animate
-
-        // Second anon function end               
-    }
-    ); // end click
 }); // end ready

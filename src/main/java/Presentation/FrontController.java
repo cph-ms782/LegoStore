@@ -2,9 +2,8 @@ package Presentation;
 
 import Logic.LoginSampleException;
 import Logic.OrderSampleException;
+import Logic.UnknownCommandException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-
- @author kasper
+ * Handles all commands and dispatches to relevant pages
+ * 
+ * @author kasper and martin bøgh
  */
 @WebServlet( name = "FrontController", urlPatterns = { "/FrontController" } )
 public class FrontController extends HttpServlet {
@@ -30,12 +30,12 @@ public class FrontController extends HttpServlet {
     protected void processRequest( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
         try {
-            Command action = Command.from( request );
-            String view = action.execute( request, response );
-            request.getRequestDispatcher( "/WEB-INF/" + view + ".jsp" ).forward( request, response );
-        } catch (OrderSampleException | LoginSampleException ex ) {
-            request.setAttribute( "error", ex.getMessage() );
-            request.getRequestDispatcher( "index.jsp" ).forward( request, response );
+            Command action = Command.from(request);
+            String view = action.execute(request, response);
+            request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward( request, response );
+        } catch (UnknownCommandException | OrderSampleException | LoginSampleException ex ) {
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher("index.jsp").forward( request, response );
         } 
     }
 

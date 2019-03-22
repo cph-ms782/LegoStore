@@ -1,7 +1,8 @@
 <%-- 
     Document   : index
     Created on : Aug 22, 2017, 2:01:06 PM
-    Author     : kasper
+    Modified on: Mar, 2019
+    Author     : kasper & martin bøgh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +17,7 @@
         <% String error = (String) request.getAttribute("error");
             if (error != null)
             {
-                out.println("<div id=\"errorInfo\">Error!!");
+                out.println("<div id=\"errorInfo\">");
                 out.println("<p>"+error + "<p></div>");
             }
         %>

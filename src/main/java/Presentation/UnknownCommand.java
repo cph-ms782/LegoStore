@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- The purpose of UnknownCommand is to...
-
- @author kasper
+ * The purpose of UnknownCommand is to pass exception error "tell user that IT needs to be called"
+ *
+ *  @author kasper & martin bøgh
  */
 public class UnknownCommand extends Command {
 
@@ -16,5 +16,4 @@ public class UnknownCommand extends Command {
     String execute( HttpServletRequest request, HttpServletResponse response ) throws UnknownCommandException {
         throw new UnknownCommandException();
     }
-
 }

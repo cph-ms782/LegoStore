@@ -1,3 +1,4 @@
+<%@page import="Logic.DTO.User"%>
 <%@ page pageEncoding="UTF-8" %>
 <div class="content">
     <div class="main">
@@ -5,15 +6,11 @@
             <li><a href="FrontController?command=NewOrderCommand">Byg hus </a>
             </li>
             <li><a href="FrontController?command=CheckOrderCommand">Se ordrer </a>
-<!--                <ul>
-                    <li><a href="#">Gizmos </a>
-                        <ul>
-                            <li><a href="#">Gizmo Basic</a></li>
-                            <li><a href="#">Gizmo Standard</a></li>
-                            <li><a href="#">Gizmo Supreme</a></li>
-                        </ul>
-                    </li>
-                </ul>-->
+            </li>
+            <%if (request.getParameter("email") != null)
+                {%>
+            <li><a href="FrontController?command=LogoutCommand" title="Log ud"><%=request.getParameter("email")%></a>
+                <%}%>
             </li>
         </ul>
 

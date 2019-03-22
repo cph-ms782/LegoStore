@@ -20,11 +20,8 @@
 </div>
 
 <div id="login">
-    <a href="form.html"><p id="open">Login</p></a>
-
-    <!--GET changes to POST when deployed-->
-    <form name="LoginCommand" action="FrontController" method="GET">
-
+    <a href="form.html"><p id="openLogin">Login</p></a>
+    <form name="LoginCommand" action="FrontController" method="POST">
         <input type="hidden" name="command" value="LoginCommand">
         <p>
             <label for="username">Email</label>
@@ -42,9 +39,7 @@
 </div>
 
 <div id="registerDiv">
-    <!--GET changes to POST when deployed-->
-    <form name="RegisterCommand" action="FrontController" method="GET">
-
+    <form name="RegisterCommand" action="FrontController" method="POST">
         <input type="hidden" name="command" value="RegisterCommand">
         <p>
             <label for="username">Email</label>
@@ -69,7 +64,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <!--Inserting place for user invoice table-->
+                <!--Inserting place for order table-->
                 <table id="mainTable" ></table>
             </div>
         </div>
@@ -77,5 +72,6 @@
 </div>
 
 <div id="orderInfo">
+    <!--area where an orders info is shown-->
     <p></p>
 </div>

@@ -15,7 +15,7 @@ public class CheckOrderCommand extends Command
 {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, LoginSampleException
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException
     {
         try
         {
@@ -24,24 +24,27 @@ public class CheckOrderCommand extends Command
             boolean isEmployee = false;
             boolean isOrder = false;
             int orderID = 0;
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            String role = (String) session.getAttribute("role");
 
             if ("true".equals(changeShipped))
             {
                 isShipped = true;
             }
+
             String seeOrder = (String) request.getParameter("seeOrder");
             if ("true".equals(seeOrder))
             {
                 isOrder = true;
             }
+
             Object oID = request.getParameter("orderID");
             if (oID != null)
             {
                 orderID = Integer.parseInt(request.getParameter("orderID"));
             }
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-            String role = (String) session.getAttribute("role");
+
             if (role != null && role.equals("employee"))
             {
                 isEmployee = true;
@@ -62,7 +65,7 @@ public class CheckOrderCommand extends Command
                 if (isOrder && orderID > 0)
                 {
                     Order o = LogicFacade.fetchOrder(orderID);
-                    Bricks bricks = calcHouse.calc(o.getHeight(), 
+                    Bricks bricks = calcHouse.calc(o.getHeight(),
                             o.getWidth(), o.getHeight());
                     if (isShipped)
                     {
@@ -79,11 +82,12 @@ public class CheckOrderCommand extends Command
                 }
             } catch (OrderSampleException ex)
             {
-                ex.printStackTrace();
+                throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
+                        + ex.getMessage());
             }
         } catch (NumberFormatException ex)
         {
-            throw new NumberFormatException("Ikke alle indtastede værdier var hele tal");
+            throw new OrderSampleException("Ikke alle værdier blev fundet i forsøget på at se ordrer: " + ex.getMessage());
         }
         return "orderpage";
     }
