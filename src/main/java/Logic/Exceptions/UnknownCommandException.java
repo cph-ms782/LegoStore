@@ -1,4 +1,4 @@
-package Logic;
+package Logic.Exceptions;
 
 /**
  *  Error thrown when there's now Command to handle request

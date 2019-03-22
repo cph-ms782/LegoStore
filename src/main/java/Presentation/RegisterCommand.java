@@ -1,9 +1,9 @@
 package Presentation;
 
 import Logic.LogicFacade;
-import Logic.LoginSampleException;
+import Logic.Exceptions.LoginSampleException;
 import Logic.DTO.User;
-import Logic.OrderSampleException;
+import Logic.Exceptions.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

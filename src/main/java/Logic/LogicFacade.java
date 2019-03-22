@@ -1,5 +1,7 @@
 package Logic;
 
+import Logic.Exceptions.LoginSampleException;
+import Logic.Exceptions.OrderSampleException;
 import Data.OrderMapper_DB;
 import Logic.DTO.User;
 import Data.UserMapper_DB;

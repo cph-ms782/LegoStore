@@ -1,7 +1,7 @@
 package Data;
 
 import Logic.DTO.User;
-import Logic.LoginSampleException;
+import Logic.Exceptions.LoginSampleException;
 
 /**
  *

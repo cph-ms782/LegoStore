@@ -1,6 +1,6 @@
 package Presentation;
 
-import Logic.OrderSampleException;
+import Logic.Exceptions.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

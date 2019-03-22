@@ -1,7 +1,7 @@
 package Presentation;
 
 import Presentation.Command;
-import Logic.UnknownCommandException;
+import Logic.Exceptions.UnknownCommandException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

@@ -1,8 +1,8 @@
 package Presentation;
 
-import Logic.LoginSampleException;
-import Logic.OrderSampleException;
-import Logic.UnknownCommandException;
+import Logic.Exceptions.LoginSampleException;
+import Logic.Exceptions.OrderSampleException;
+import Logic.Exceptions.UnknownCommandException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -3,7 +3,7 @@ package Presentation;
 import Logic.LogicFacade;
 import Logic.DTO.Order;
 import Logic.DTO.User;
-import Logic.OrderSampleException;
+import Logic.Exceptions.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

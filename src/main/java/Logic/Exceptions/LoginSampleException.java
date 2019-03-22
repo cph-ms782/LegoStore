@@ -1,4 +1,4 @@
-package Logic;
+package Logic.Exceptions;
 
 /**
  * The purpose of LoginSampleException is to handle exception circling about

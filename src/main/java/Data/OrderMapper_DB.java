@@ -1,7 +1,7 @@
 package Data;
 
 import Logic.DTO.Order;
-import Logic.OrderSampleException;
+import Logic.Exceptions.OrderSampleException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

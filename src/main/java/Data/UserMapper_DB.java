@@ -1,6 +1,6 @@
 package Data;
 
-import Logic.LoginSampleException;
+import Logic.Exceptions.LoginSampleException;
 import Logic.DTO.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
