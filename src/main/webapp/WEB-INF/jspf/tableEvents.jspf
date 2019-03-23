@@ -1,6 +1,6 @@
 <%-- 
-    Document   : arrayJava2JS.jsp
-    Function   : Create tables
+    Document   : tableEvents.jsp
+    Function   : Create table events. mouseover and click events and start createTable function which draw the table
     Created on : Mar, 2019
     Author     : martin bøgh
 --%>

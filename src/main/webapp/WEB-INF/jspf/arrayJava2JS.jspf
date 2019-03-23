@@ -1,6 +1,6 @@
 <%-- 
     Document   : arrayJava2JS.jsp
-    Function   : Makes JS arrays
+    Function   : Makes JS arrays from java array
     Created on : Mar, 2019
     Author     : martin bøgh
 --%>
@@ -31,10 +31,7 @@ orderArray = [
         userID = "" + orders.getOrders().get(i).getOrderID();
         shipped = "" + orders.getOrders().get(i).isShipped();
 %>
-[
-'<%=userID%>'
-, '<%= shipped%>']
-<%= i + 1 < orders.getOrders().size() ? "," : ""%>
+['<%=userID%>','<%= shipped%>']<%= i + 1 < orders.getOrders().size()?",":""%>
 <%}%>
 ];
 });// end ready
