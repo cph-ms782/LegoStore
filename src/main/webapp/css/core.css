@@ -171,7 +171,7 @@
 }
 
 #errorInfo {
-    position: absolute;
+    position: fixed;
     font-size: 35px;
     left: 0;
     bottom: 0;
