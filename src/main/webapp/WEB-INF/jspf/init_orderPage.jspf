@@ -6,7 +6,6 @@
     Order order = (Order) session.getAttribute("order");
     User loggedinUser = (User) session.getAttribute("user");
     User orderUser = (User) session.getAttribute("orderUser");
-    String role = (String) session.getAttribute("role");
     Bricks bricks = (Bricks) session.getAttribute("bricks");
     String userName = null;
     boolean isOrderUserObject = false;
@@ -21,11 +20,6 @@
     int twoBricks = 0;
     int oneBricks = 0;
     boolean isShipped = false;
-
-    if (role != null && role.equals("employee"))
-    {
-        isEmployee = true;
-    }
 
 //    user comes from header.jspf and is present
     if (loggedinUser != null)

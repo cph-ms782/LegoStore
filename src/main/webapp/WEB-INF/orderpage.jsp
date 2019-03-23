@@ -21,12 +21,12 @@
         <!--initial setup of objects and checks-->
         <%@ include file = "jspf/init_orderPage.jspf" %>
 
-        <!--javascript and setup of java to JS array-->
-        <script>
-            <%@ include file = "jspf/arrayJava2JS.jspf"%>
-        </script>
-        <%}
-           %>
+        <!--maketables function-->
+        <script src="./js/makeTables.js"></script>
+
+        <!--setup of java to JS array-->
+        <%@ include file = "jspf/arrayJava2JS.jspf"%>
+        <%@ include file = "jspf/tableEvents.jspf"%>
     </head>
 
     <body>
