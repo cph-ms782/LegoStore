@@ -4,7 +4,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%
     Order order = (Order) session.getAttribute("order");
-    User user = (User) session.getAttribute("user");
+    User loggedinUser = (User) session.getAttribute("user");
     User orderUser = (User) session.getAttribute("orderUser");
     String role = (String) session.getAttribute("role");
     Bricks bricks = (Bricks) session.getAttribute("bricks");
@@ -27,9 +27,10 @@
         isEmployee = true;
     }
 
-    if (user != null)
+//    user comes from header.jspf and is present
+    if (loggedinUser != null)
     {
-        userName = user.getEmail();
+        userName = loggedinUser.getEmail();
         isUserObject = true;
     }
     

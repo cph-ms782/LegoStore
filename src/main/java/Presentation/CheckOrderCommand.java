@@ -24,14 +24,17 @@ public class CheckOrderCommand extends Command
     {
         try
         {
-            String changeShipped = (String) request.getParameter("orderSent");
             boolean isShipped = false;
             boolean isEmployee = false;
             boolean isOrder = false;
             int orderID = 0;
+            
+            String changeShipped = (String) request.getParameter("orderSent");
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             String role = (String) session.getAttribute("role");
+            
+//          check if the user is logged ind
             if (user != null)
             {
                 if ("true".equals(changeShipped))
@@ -93,7 +96,7 @@ public class CheckOrderCommand extends Command
                 }
             } else
             {
-                throw new LoginSampleException("Du er automatisk blevet logget ud. Log ind igen for at fortsætte");
+                throw new LoginSampleException("Du er logget ud. Log ind for at fortsætte");
             }
         } catch (NumberFormatException ex)
         {

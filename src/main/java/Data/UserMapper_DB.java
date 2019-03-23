@@ -16,26 +16,33 @@ import java.sql.Statement;
 public class UserMapper_DB
 {
 
+    private static ResultSet rs;
+    private static PreparedStatement ps;
+    private static Connection con;
+
     public static User createUser(User user) throws LoginSampleException
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getRole());
             ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int id = ids.getInt(1);
+            rs = ps.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
             user.setID(id);
             return user;
         } catch (SQLException | ClassNotFoundException ex)
         {
-            throw new LoginSampleException("Der skete en fejl. Forsøg med en anden email"
-                    + " adresse...." +ex.getMessage());
+            throw new LoginSampleException("Der skete en fejl. Forsøg evt. med en anden email"
+                    + " adresse...." + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
 
@@ -43,13 +50,13 @@ public class UserMapper_DB
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "SELECT id, role FROM user "
                     + "WHERE email=? AND password=?";
-            PreparedStatement ps = con.prepareStatement(SQL);
+            ps = con.prepareStatement(SQL);
             ps.setString(1, email);
             ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next())
             {
                 int id = rs.getInt("id");
@@ -63,7 +70,10 @@ public class UserMapper_DB
             }
         } catch (ClassNotFoundException | SQLException ex)
         {
-            throw new LoginSampleException(ex.getMessage());
+            throw new LoginSampleException("Login problem: " + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
 
@@ -71,12 +81,12 @@ public class UserMapper_DB
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "SELECT * FROM user "
                     + "WHERE id=?";
-            PreparedStatement ps = con.prepareStatement(SQL);
+            ps = con.prepareStatement(SQL);
             ps.setInt(1, userID);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next())
             {
                 String email = rs.getString("email");
@@ -92,7 +102,9 @@ public class UserMapper_DB
         } catch (ClassNotFoundException | SQLException ex)
         {
             throw new LoginSampleException("Kunne ikke finde bruger" + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
-
 }

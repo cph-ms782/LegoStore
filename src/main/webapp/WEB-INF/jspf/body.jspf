@@ -2,6 +2,7 @@
 
 <%@ page pageEncoding="UTF-8" %>
 
+<!--logo area-->
 <div id="headerTopDiv">
     <div id="headerDiv">
         <img src="img/lego_brick.gif" alt="legoBrick">
@@ -21,6 +22,7 @@
     </div>
 </div>
 
+<!--plant login and register form on page-->
 <div id="reglogin">
     <div id="login">
         <a href="form.html"><p id="openLogin">Login</p></a>
@@ -63,6 +65,7 @@
     </div>
 </div>
 
+<!--Here comes the tables and other infos-->
 <div id="mainInfo">
     <p></p>
     <div class="container">
@@ -75,7 +78,18 @@
     </div>
 </div>
 
+<!--area where an orders info is shown-->
 <div id="orderInfo">
-    <!--area where an orders info is shown-->
     <p></p>
 </div>
+
+
+<!--area where an error info is shown if it exist-->
+<% String error = (String) request.getAttribute("error");
+    if (error != null)
+    {  %>
+
+    <div id="errorInfo"><p> <%=error%> <p></div>
+
+<%  }
+%>

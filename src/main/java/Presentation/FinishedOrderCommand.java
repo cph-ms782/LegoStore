@@ -3,6 +3,7 @@ package Presentation;
 import Logic.LogicFacade;
 import Logic.DTO.Order;
 import Logic.DTO.User;
+import Logic.Exceptions.LoginSampleException;
 import Logic.Exceptions.OrderSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,49 +11,55 @@ import javax.servlet.http.HttpSession;
 
 /**
  * command for handling a new order
- * 
+ *
  * @author martin
  */
 public class FinishedOrderCommand extends Command
 {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws OrderSampleException
+    String execute(HttpServletRequest request, HttpServletResponse response) throws OrderSampleException, LoginSampleException
     {
-        try
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+//      check if the user is logged ind
+        if (user != null && "customer".equals(user.getRole()))
         {
-            int length = Integer.parseInt(request.getParameter("length"));
-            int width = Integer.parseInt(request.getParameter("width"));
-            int height = Integer.parseInt(request.getParameter("height"));
-
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-            Order order = new Order(user.getID(), length, width, height, false);
-
             try
             {
-                //Save and fill order with orderID
-                order = LogicFacade.createOrder(order);
-                if ("employee".equals(user.getRole()))
+                int length = Integer.parseInt(request.getParameter("length"));
+                int width = Integer.parseInt(request.getParameter("width"));
+                int height = Integer.parseInt(request.getParameter("height"));
+
+                Order order = new Order(user.getID(), length, width, height, false);
+
+                try
                 {
-                    session.setAttribute("orders",
-                            LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
-                    session.setAttribute("order", null);
-                } else if ("customer".equals(user.getRole()))
+                    //Save and fill order with orderID
+                    order = LogicFacade.createOrder(order);
+                    if ("employee".equals(user.getRole()))
+                    {
+                        session.setAttribute("orders",
+                                LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
+                        session.setAttribute("order", null);
+                    } else if ("customer".equals(user.getRole()))
+                    {
+                        session.setAttribute("orders",
+                                LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
+                        session.setAttribute("order", order);
+                    }
+                } catch (OrderSampleException ex)
                 {
-                    session.setAttribute("orders",
-                            LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
-                    session.setAttribute("order", order);
+                    throw new OrderSampleException("Der er sket en fejl i håndteringen af den nye ordre" + ex.getMessage());
                 }
-            } catch (OrderSampleException ex)
+            } catch (NumberFormatException ex)
             {
-                throw new OrderSampleException("Der er sket en fejl i håndteringen af den nye ordre" + ex.getMessage());
+                throw new OrderSampleException("Ikke alle indtastede værdier var hele tal: " + ex.getMessage());
             }
-        } catch (NumberFormatException ex)
-        {
-            throw new OrderSampleException("Ikke alle indtastede værdier var hele tal: " + ex.getMessage());
+            return "orderpage";
         }
-        return "orderpage";
+        throw new LoginSampleException("Man skal være en logget ind kunde for kunne ordre hus");
     }
 
 }

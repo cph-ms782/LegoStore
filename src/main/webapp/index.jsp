@@ -11,15 +11,8 @@
     <head>
         <%@ include file = "WEB-INF/jspf/header.jspf" %>
     </head>
+    
     <body>
         <%@ include file = "WEB-INF/jspf/body.jspf" %>
-        
-        <% String error = (String) request.getAttribute("error");
-            if (error != null)
-            {
-                out.println("<div id=\"errorInfo\">");
-                out.println("<p>"+error + "<p></div>");
-            }
-        %>
     </body>
 </html>

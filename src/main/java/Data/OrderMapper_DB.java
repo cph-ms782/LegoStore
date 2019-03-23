@@ -18,27 +18,34 @@ import java.util.List;
 public class OrderMapper_DB
 {
 
+    static Connection con;
+    static ResultSet rs;
+    static PreparedStatement ps;
+
     public static Order createOrder(Order order) throws OrderSampleException
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "INSERT INTO `order` (userid, length, width, height, shipped) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getUserID());
             ps.setInt(2, order.getLength());
             ps.setInt(3, order.getWidth());
             ps.setInt(4, order.getHeight());
             ps.setBoolean(5, order.isShipped());
             ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int orderid = ids.getInt(1);
+            rs = ps.getGeneratedKeys();
+            rs.next();
+            int orderid = rs.getInt(1);
             order.setOrderID(orderid);
             return order;
         } catch (SQLException | ClassNotFoundException ex)
         {
             throw new OrderSampleException("Kunne ikke skabe ny ordre: " + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
 
@@ -54,7 +61,7 @@ public class OrderMapper_DB
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String i = null;
             if ("order".equals(idType))
             {
@@ -68,9 +75,9 @@ public class OrderMapper_DB
             }
             String SQL = "SELECT orderid, userid, length, width, height, shipped FROM `order` "
                     + "WHERE " + i + "=?";
-            PreparedStatement ps = con.prepareStatement(SQL);
+            ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next())
             {
                 int orderid = rs.getInt("orderid");
@@ -89,6 +96,9 @@ public class OrderMapper_DB
         } catch (ClassNotFoundException | SQLException ex)
         {
             throw new OrderSampleException(ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
 
@@ -98,10 +108,10 @@ public class OrderMapper_DB
 
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "SELECT * FROM `order`";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
+            ps = con.prepareStatement(SQL);
+            rs = ps.executeQuery();
 
             while (rs.next())
             {
@@ -121,6 +131,9 @@ public class OrderMapper_DB
         } catch (ClassNotFoundException | SQLException ex)
         {
             throw new OrderSampleException("Der skete en fejl da liste af ordre skulle samles: " + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
 
         return orders;
@@ -150,14 +163,22 @@ public class OrderMapper_DB
     {
         try
         {
-            Connection con = Connector.connection();
+            con = Connector.connection(con);
             String SQL = "UPDATE `order` SET `shipped` = '1' WHERE (`orderid` = ?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, orderID);
             ps.executeUpdate();
+
+//          resultset not need for DB work but reference is needed when closing further down
+//          making sure rs is null
+            rs = null;
+
         } catch (SQLException | ClassNotFoundException ex)
         {
             throw new OrderSampleException("Der skete en fejl da Afsendelses-status skulle ændres i DB: " + ex.getMessage());
+        } finally
+        {
+            Connector.CloseConnection(rs, ps, con);
         }
     }
 

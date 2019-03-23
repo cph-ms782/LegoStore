@@ -7,9 +7,14 @@
             </li>
             <li><a href="FrontController?command=CheckOrderCommand">Se ordrer </a>
             </li>
-            <%if (request.getParameter("email") != null)
-                {%>
-            <li><a href="FrontController?command=LogoutCommand" title="Log ud"><%=request.getParameter("email")%></a>
+            <%
+
+                User user = (User) session.getAttribute("user");
+                if (user != null)
+                {
+                    String email = user.getEmail();
+            %>
+            <li><a href="FrontController?command=LogoutCommand" title="Log ud"><%=email%></a>
                 <%}%>
             </li>
         </ul>
