@@ -87,9 +87,9 @@
 <!--area where an error info is shown if it exist-->
 <% String error = (String) request.getAttribute("error");
     if (error != null)
-    {  %>
+    {%>
 
-    <div id="errorInfo"><p> <%=error%> <p></div>
+<div id="errorInfo"><p> <%=error%> <p></div>
 
 <%  }
 %>

@@ -7,13 +7,14 @@ import Logic.DTO.User;
 import Logic.Exceptions.LoginSampleException;
 import Logic.Exceptions.OrderSampleException;
 import Logic.calcHouse;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  * command for handling orders when user wants to see a list of orders
- * 
+ *
  * @author martin
  */
 public class CheckOrderCommand extends Command
@@ -28,12 +29,12 @@ public class CheckOrderCommand extends Command
             boolean isEmployee = false;
             boolean isOrder = false;
             int orderID = 0;
-            
+
             String changeShipped = (String) request.getParameter("orderSent");
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             String role = (String) session.getAttribute("role");
-            
+
 //          check if the user is logged ind
             if (user != null)
             {
@@ -68,8 +69,14 @@ public class CheckOrderCommand extends Command
                                 LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
                     } else
                     {
-                        session.setAttribute("orders",
-                                LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
+                        List<Order> list = LogicFacade.fetchOrders(user.getID());
+                        if (list.size() > 0)
+                        {
+                            session.setAttribute("orders",
+                                    LogicFacade.fillOrderList(list));
+                        } else{
+                            throw new OrderSampleException("Der er ingen ordrer endnu");
+                        }
                     }
                     if (isOrder && orderID > 0)
                     {
@@ -102,6 +109,8 @@ public class CheckOrderCommand extends Command
         {
             throw new OrderSampleException("Ikke alle værdier blev fundet i forsøget på at se ordrer: " + ex.getMessage());
         }
+        
+//      if there were no exceptions sprung show the orderpage
         return "orderpage";
     }
 

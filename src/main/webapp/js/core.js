@@ -3,29 +3,47 @@
  * 
  * @type type
  */
-
-$(document).ready(function ()
+function hideLogin()
 {
-
-//  ####  Login  ####
-    $('#openLogin').click(function (evt)
+    $(document).ready(function ()
     {
-        evt.preventDefault();
-        $('#login form').slideToggle(300);
-        $('#registerButton').slideToggle(300);
-        $(this).toggleClass('closing');
-    }); // end click
+        $('#login').hide();
+    }); // end ready
+}
+
+function showLogin()
+{
+    $(document).ready(function ()
+    {
+        $('#login').slideDown();
+    }); // end ready
+}
+
+function loginDropdown()
+{
+    $(document).ready(function ()
+    {
+        $('#login').slideDown();
+//  ####  Login  ####
+        $('#openLogin').click(function (evt)
+        {
+            evt.preventDefault();
+            $('#login form').slideToggle(300);
+            $('#registerButton').slideToggle(300);
+            $(this).toggleClass('closing');
+        }); // end click
 
 //  ####  Registration  ####
-    $('#registerButton').click(function (evt)
-    {
-        $('#registerDiv form').slideToggle(300);
-        $('#openLogin').toggleClass('closing');
-    }); // end click
+        $('#registerButton').click(function (evt)
+        {
+            $('#registerDiv form').slideToggle(300);
+            $('#openLogin').toggleClass('closing');
+        }); // end click
 
-    $('#sendRegisterButton').click(function ()
-    {
-        $('#openLogin').toggleClass('closing');
-    });
+        $('#sendRegisterButton').click(function ()
+        {
+            $('#openLogin').toggleClass('closing');
+        });
 
-}); // end ready
+    }); // end ready
+}

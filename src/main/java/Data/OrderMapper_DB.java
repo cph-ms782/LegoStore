@@ -1,6 +1,7 @@
 package Data;
 
 import Logic.DTO.Order;
+import Logic.Exceptions.LoginSampleException;
 import Logic.Exceptions.OrderSampleException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class OrderMapper_DB
     static ResultSet rs;
     static PreparedStatement ps;
 
-    public static Order createOrder(Order order) throws OrderSampleException
+    public static Order createOrder(Order order) throws OrderSampleException, LoginSampleException
     {
         try
         {
@@ -40,7 +41,7 @@ public class OrderMapper_DB
             int orderid = rs.getInt(1);
             order.setOrderID(orderid);
             return order;
-        } catch (SQLException | ClassNotFoundException ex)
+        } catch (SQLException ex)
         {
             throw new OrderSampleException("Kunne ikke skabe ny ordre: " + ex.getMessage());
         } finally
@@ -57,7 +58,7 @@ public class OrderMapper_DB
      * @return
      * @throws OrderSampleException
      */
-    public static Order findOrder(int id, String idType) throws OrderSampleException
+    public static Order findOrder(int id, String idType) throws OrderSampleException, LoginSampleException
     {
         try
         {
@@ -93,7 +94,7 @@ public class OrderMapper_DB
             {
                 throw new OrderSampleException("Kunne ikke finde ny ordre");
             }
-        } catch (ClassNotFoundException | SQLException ex)
+        } catch (SQLException ex)
         {
             throw new OrderSampleException(ex.getMessage());
         } finally
@@ -102,7 +103,7 @@ public class OrderMapper_DB
         }
     }
 
-    public static List<Order> findOrders() throws OrderSampleException
+    public static List<Order> findOrders() throws OrderSampleException, LoginSampleException
     {
         List<Order> orders = new ArrayList<>();
 
@@ -128,7 +129,7 @@ public class OrderMapper_DB
                     orders.add(o);
                 }
             }
-        } catch (ClassNotFoundException | SQLException ex)
+        } catch (SQLException ex)
         {
             throw new OrderSampleException("Der skete en fejl da liste af ordre skulle samles: " + ex.getMessage());
         } finally
@@ -146,7 +147,7 @@ public class OrderMapper_DB
      * @return
      * @throws OrderSampleException
      */
-    public static List<Order> findOrders(int userID) throws OrderSampleException
+    public static List<Order> findOrders(int userID) throws OrderSampleException, LoginSampleException
     {
         List<Order> userOrderList = new ArrayList<>();
         for (Order order : findOrders())
@@ -159,7 +160,7 @@ public class OrderMapper_DB
         return userOrderList;
     }
 
-    public static void changeShipping(int orderID) throws OrderSampleException
+    public static void changeShipping(int orderID) throws OrderSampleException, LoginSampleException
     {
         try
         {
@@ -173,7 +174,7 @@ public class OrderMapper_DB
 //          making sure rs is null
             rs = null;
 
-        } catch (SQLException | ClassNotFoundException ex)
+        } catch (SQLException ex)
         {
             throw new OrderSampleException("Der skete en fejl da Afsendelses-status skulle ændres i DB: " + ex.getMessage());
         } finally

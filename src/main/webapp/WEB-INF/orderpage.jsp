@@ -17,6 +17,7 @@
         <!--importing header declarations, css, Bootstrap, jQuery-->
         <%@ include file = "jspf/header.jspf" %>
 
+
         <!--initial setup of objects and checks-->
         <%@ include file = "jspf/init_orderPage.jspf" %>
 
@@ -24,13 +25,14 @@
         <script>
             <%@ include file = "jspf/arrayJava2JS.jspf"%>
         </script>
-        <%}%>
+        <%}
+           %>
     </head>
 
     <body>
         <!--Main body html-->
         <%@ include file = "jspf/body.jspf"%>
-        
+
         <!--Setup order info box html-->
         <%if (isOrderObject)
             {%>

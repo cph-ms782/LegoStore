@@ -79,6 +79,7 @@ html, body {
 }
 
 #login {
+    display: none;
     top: 0px;
     left: 400px;
     width: 300px;

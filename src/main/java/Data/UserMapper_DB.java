@@ -36,7 +36,7 @@ public class UserMapper_DB
             int id = rs.getInt(1);
             user.setID(id);
             return user;
-        } catch (SQLException | ClassNotFoundException ex)
+        } catch (SQLException ex)
         {
             throw new LoginSampleException("Der skete en fejl. Forsøg evt. med en anden email"
                     + " adresse...." + ex.getMessage());
@@ -68,7 +68,7 @@ public class UserMapper_DB
             {
                 throw new LoginSampleException("Kunne ikke finde bruger");
             }
-        } catch (ClassNotFoundException | SQLException ex)
+        } catch (SQLException ex)
         {
             throw new LoginSampleException("Login problem: " + ex.getMessage());
         } finally
@@ -99,7 +99,7 @@ public class UserMapper_DB
             {
                 throw new LoginSampleException("Kunne ikke finde bruger");
             }
-        } catch (ClassNotFoundException | SQLException ex)
+        } catch (SQLException ex)
         {
             throw new LoginSampleException("Kunne ikke finde bruger" + ex.getMessage());
         } finally

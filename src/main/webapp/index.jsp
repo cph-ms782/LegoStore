@@ -11,7 +11,7 @@
     <head>
         <%@ include file = "WEB-INF/jspf/header.jspf" %>
     </head>
-    
+
     <body>
         <%@ include file = "WEB-INF/jspf/body.jspf" %>
     </body>

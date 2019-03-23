@@ -67,7 +67,7 @@ public class LogicFacade
      * @return
      * @throws OrderSampleException 
      */
-    public static Order createOrder(Order order) throws OrderSampleException
+    public static Order createOrder(Order order) throws OrderSampleException, LoginSampleException
     {
         return OrderMapper_DB.createOrder(order);
     }
@@ -79,7 +79,7 @@ public class LogicFacade
      * @return
      * @throws OrderSampleException 
      */
-    public static Order fetchOrder(int orderId) throws OrderSampleException
+    public static Order fetchOrder(int orderId) throws OrderSampleException, LoginSampleException
     {
         return OrderMapper_DB.findOrder(orderId, "order");
     }
@@ -90,7 +90,7 @@ public class LogicFacade
      * @return
      * @throws OrderSampleException 
      */
-    public static List<Order> fetchOrders() throws OrderSampleException
+    public static List<Order> fetchOrders() throws OrderSampleException, LoginSampleException
     {
         return OrderMapper_DB.findOrders();
     }
@@ -102,7 +102,7 @@ public class LogicFacade
      * @return
      * @throws OrderSampleException 
      */
-    public static List<Order> fetchOrders(int userId) throws OrderSampleException
+    public static List<Order> fetchOrders(int userId) throws OrderSampleException, LoginSampleException
     {
         return OrderMapper_DB.findOrders(userId);
     }
@@ -115,7 +115,7 @@ public class LogicFacade
      * @return Order object
      * @throws OrderSampleException 
      */
-    public static Order setOrderAsShipped(Order order) throws OrderSampleException
+    public static Order setOrderAsShipped(Order order) throws OrderSampleException, LoginSampleException
     {
         OrderMapper_DB.changeShipping(order.getOrderID());
 
