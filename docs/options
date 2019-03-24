@@ -1,0 +1,24 @@
+-classpath
+'/home/martin/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar:/home/martin/.m2/repository/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar:/home/martin/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/home/martin/NetBeansProjects/LegoStore/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2019. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/martin/NetBeansProjects/LegoStore/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'LegoStore 0.1-Test API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' '/home/martin/NetBeansProjects/LegoStore/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'LegoStore 0.1-Test API'
