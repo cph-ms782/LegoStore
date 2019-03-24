@@ -38,17 +38,10 @@ public class FinishedOrderCommand extends Command
                 {
                     //Save and fill order with orderID
                     order = LogicFacade.createOrder(order);
-                    if ("employee".equals(user.getRole()))
-                    {
-                        session.setAttribute("orders",
-                                LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
-                        session.setAttribute("order", null);
-                    } else if ("customer".equals(user.getRole()))
-                    {
-                        session.setAttribute("orders",
-                                LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
-                        session.setAttribute("order", order);
-                    }
+                    session.setAttribute("orders",
+                            LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
+                    session.setAttribute("order", order);
+
                 } catch (OrderSampleException ex)
                 {// if there's been an error in the fetching of data from storage
                     throw new OrderSampleException("Der er sket en fejl i håndteringen af den nye ordre" + ex.getMessage());
@@ -57,7 +50,7 @@ public class FinishedOrderCommand extends Command
             {// if something not a number was entered
                 throw new OrderSampleException("Ikke alle indtastede værdier var hele tal: " + ex.getMessage());
             }
-//          if there's been no exception pass on to the next page
+//          if there's been no exception pass on the next page
             return "orderpage";
         }
 //      if you're not logged in an a customer this message

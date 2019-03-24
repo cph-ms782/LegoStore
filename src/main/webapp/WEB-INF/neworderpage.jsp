@@ -19,16 +19,16 @@
                     <form name="NewOrderCommand" action="FrontController" method="POST">
                         <input type="hidden" name="command" value="FinishedOrderCommand">
                         <p>
-                            <label for="height">Højde: </label>
-                            <input type="text" name="height" id="houseHeight">
+                            <label for="length">Højde: </label>
+                            <input type="text" name="length" id="houseLength">
                         </p>
                         <p>
                             <label for="width">Bredde: </label>
                             <input type="text" name="width" id="houseWidth">
                         </p>
                         <p>
-                            <label for="length">Længde: </label>
-                            <input type="text" name="length" id="houseLength">
+                            <label for="height">Længde: </label>
+                            <input type="text" name="height" id="houseHeight">
                         </p>
                         <p class="button">
                             <input type="submit" name="neworder" class="btn btn-success" id="newOrderButton" value="Ordre nyt hus" >

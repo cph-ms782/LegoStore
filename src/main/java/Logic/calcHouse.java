@@ -18,11 +18,11 @@ public class calcHouse
      * @param bricks
      * @return 
      */
-    private static Bricks calcSide(int length, Bricks bricks)
+    private static Bricks calcSide(int distance, Bricks bricks)
     {
 
-        bricks.addFourBricks(length / 4);
-        int rem = length % 4;
+        bricks.addFourBricks(distance / 4);
+        int rem = distance % 4;
 
         bricks.addTwoBricks(rem / 2);
         rem = rem % 2;
@@ -41,6 +41,7 @@ public class calcHouse
     public static Bricks calc(int length, int width, int height)
     {
         Bricks bricks = new Bricks();
+        
         // minus two because next wallside start at end of this side
         int longSide = length - 2;
         int shortSide = width - 2;

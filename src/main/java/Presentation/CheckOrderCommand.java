@@ -23,91 +23,96 @@ public class CheckOrderCommand extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException
     {
-            boolean isShipped = false;
-            boolean isEmployee = false;
-            boolean isOrder = false;
-            int orderID = 0;
+        boolean isShipped = false;
+        boolean isEmployee = false;
+        boolean isOrder = false;
+        int orderID = 0;
 
-            String changeShipped = (String) request.getParameter("orderSent");
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-            String role = (String) session.getAttribute("role");
+        String changeShipped = (String) request.getParameter("orderSent");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        String role = (String) session.getAttribute("role");
 
 //          check if the user is logged ind
-            if (user != null)
+        if (user != null)
+        {
+            if ("true".equals(changeShipped))
             {
-                if ("true".equals(changeShipped))
-                {
-                    isShipped = true;
-                }
+                isShipped = true;
+            }
 
-                String seeOrder = (String) request.getParameter("seeOrder");
-                if ("true".equals(seeOrder))
-                {
-                    isOrder = true;
-                }
+            String seeOrder = (String) request.getParameter("seeOrder");
+            if ("true".equals(seeOrder))
+            {
+                isOrder = true;
+            }
 
-                Object oID = request.getParameter("orderID");
-                if (oID != null)
-                {
-                    orderID = Integer.parseInt(request.getParameter("orderID"));
-                }
+            Object oID = request.getParameter("orderID");
+            if (oID != null)
+            {
+                orderID = Integer.parseInt(request.getParameter("orderID"));
+            }
 
-                if (role != null && role.equals("employee"))
-                {
-                    isEmployee = true;
-                }
+            if (role != null && role.equals("employee"))
+            {
+                isEmployee = true;
+            }
 
-                try
-                {
+            try
+            {
 //                  setup the orderInfo box. Calculate lineitems.
-                    if (isOrder && orderID > 0)
-                    {
-                        Order o = LogicFacade.fetchOrder(orderID);
-                        Bricks bricks = calcHouse.calc(o.getHeight(),
-                                o.getWidth(), o.getHeight());
-                        
-//                      set status as shipped.
-                        if (isShipped)
-                        {
-                            o = LogicFacade.setOrderAsShipped(o);
-                        }
-                        session.setAttribute("bricks", bricks);
-                        session.setAttribute("order", o);
-                        session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
-                    } else
-                    {// set all used attributes to null if there is no order
-                        session.setAttribute("bricks", null);
-                        session.setAttribute("order", null);
-                        session.setAttribute("orderUser", null);
-                    }
+                if (isOrder && orderID > 0)
+                {
+                    Order o = LogicFacade.fetchOrder(orderID);
                     
+//                  calculate house lineitems
+                    Bricks bricks = calcHouse.calc(o.getLength(),
+                            o.getWidth(), o.getHeight());
+
+//                      set status as shipped.
+                    if (isShipped)
+                    {
+                        o = LogicFacade.setOrderAsShipped(o);
+                    }
+                    session.setAttribute("bricks", bricks);
+                    session.setAttribute("order", o);
+                    session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
+                } else
+                { // set all used attributes to null if there is no order
+                    session.setAttribute("bricks", null);
+                    session.setAttribute("order", null);
+                    session.setAttribute("orderUser", null);
+                }
+
 //                  check for employee. Then either show all the orders or only the users orders
-                    if (isEmployee)
+                if (isEmployee)
+                {
+                    session.setAttribute("orders",
+                            LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
+
+                } else
+                { // user's orders
+                    List<Order> list = LogicFacade.fetchOrders(user.getID());
+                    if (list.size() > 0)
                     {
                         session.setAttribute("orders",
-                                LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
-                    } else // user's orders
-                    {
-                        List<Order> list = LogicFacade.fetchOrders(user.getID());
-                        if (list.size() > 0)
-                        {
-                            session.setAttribute("orders",
-                                    LogicFacade.fillOrderList(list));
-                        } else{ // throw message if there's no order yet
-                            throw new OrderSampleException("Der er ingen ordrer endnu");
-                        }
+                                LogicFacade.fillOrderList(list));
+
+                    } else
+                    { // throw message if there's no order yet
+                        throw new OrderSampleException("Der er ingen ordrer endnu");
                     }
-                } catch (OrderSampleException ex)
-                {// if something goes wrong with all the checking and pulling out data from storage this message will appear
-                    throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
-                            + ex.getMessage());
                 }
-            } else
-            {// if you're logged out (aka there's no User in session) then this message
-                throw new LoginSampleException("Du er logget ud. Log ind for at fortsætte");
+            } catch (OrderSampleException ex)
+            {// if something goes wrong with all the checking and pulling out data from storage this message will appear
+                throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
+                        + ex.getMessage());
             }
-        
+        } else
+        {// if you're logged out (aka there's no User in session) then this message
+            throw new LoginSampleException("Du er logget ud. Log ind for at fortsætte");
+        }
+
 //      if there were no exceptions sprung show the orderpage
         return "orderpage";
     }
