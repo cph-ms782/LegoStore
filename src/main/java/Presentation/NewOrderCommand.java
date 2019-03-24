@@ -27,6 +27,6 @@ public class NewOrderCommand extends Command
         {
             return "neworderpage";
         }
-        throw new LoginSampleException("Man skal være en logget ind kunde for kunne ordre hus");
+        throw new LoginSampleException("Man skal være logget ind og en kunde for kunne ordre hus");
     }
 }

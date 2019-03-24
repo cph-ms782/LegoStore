@@ -73,7 +73,7 @@ public class FinishedOrderCommand extends Command
             return "orderpage";
         }
 //      if you're not logged in an a customer this message
-        throw new LoginSampleException("Man skal være en logget ind kunde for kunne ordre hus");
+        throw new LoginSampleException("Man skal være logget ind og en kunde for kunne ordre hus");
     }
 
 }
