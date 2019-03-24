@@ -9,9 +9,6 @@
 <script>
     $(document).ready(function ()
     {
-//      create tables
-        createTable(header, orderArray, 'mainTable');
-        
 //      create mouseover table effect
         $('#mainTable:has(td)').mouseover(function (e)
         {
@@ -44,6 +41,5 @@
             window.location.href = url;
         }); // end mouseover
 
-    }
-    ); // end ready
+    }); // end ready
 </script>

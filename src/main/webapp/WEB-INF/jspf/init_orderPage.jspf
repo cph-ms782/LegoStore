@@ -1,3 +1,10 @@
+<%-- 
+    Document   : orderpage.jsp
+    Function   : all the java declarations and variables need for the rest of orderpage.jsp
+    Created on : Mar, 2019
+    Author     : martin bøgh
+--%>
+
 <%@page import="Logic.DTO.Bricks"%>
 <%@page import="Logic.DTO.User"%>
 <%@page import="Logic.DTO.Order"%>

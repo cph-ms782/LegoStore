@@ -1,6 +1,16 @@
 <%-- 
     Document   : arrayJava2JS.jsp
-    Function   : Makes JS arrays from java array
+    Function   : Makes JS arrays from java array. There is an error (in Netbeans). Must be because of the combinantion of scripting and java
+                 Inside orderArray is an compressed if/then sentence.
+                 The java if/then part puts either a comma or nothing after a set of []'s depending on 
+                 how far it's come along in the java array.
+                 
+                 An array of two elements will look like this:
+                 orderArray[['orderID#1','#1 isShipped_status'],['orderID#1','#2 isShipped_status']];
+                  
+                 And the result:
+                 orderArray[[1,"false"],[2,"true"]];
+
     Created on : Mar, 2019
     Author     : martin bøgh
 --%>
@@ -15,23 +25,21 @@
             && orders.getOrders().size() > 0)
     {
         isOrdersObject = true;
-        String userID;
+        String oID;
         String shipped;
 
         //                make javascript array
 %>
 $(document).ready(function ()
 {
-header = ['Ordre Nummer', 'Afsendt'];
-
 //      making JS array from java
 orderArray = [
 <% for (int i = 0; i < orders.getOrders().size(); i++)
     {
-        userID = "" + orders.getOrders().get(i).getOrderID();
+        oID = "" + orders.getOrders().get(i).getOrderID();
         shipped = "" + orders.getOrders().get(i).isShipped();
 %>
-['<%=userID%>','<%= shipped%>']<%= i + 1 < orders.getOrders().size()?",":""%>
+['<%=oID%>','<%= shipped%>']<%= i + 1 < orders.getOrders().size()?",":""%>
 <%}%>
 ];
 });// end ready

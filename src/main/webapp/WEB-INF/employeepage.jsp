@@ -1,5 +1,6 @@
 <%-- 
     Document   : employeepage.jsp
+    Function   : showing login message
     Created on : Aug 24, 2017, 6:31:57 AM
     Author     : kasper
 --%>

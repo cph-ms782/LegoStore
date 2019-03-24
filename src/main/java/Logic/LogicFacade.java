@@ -10,7 +10,7 @@ import Logic.DTO.OrderList;
 import java.util.List;
 
 /**
- * facade for handling traffic between data and logic and between logic and presentation
+ * facade for handling traffic between data and presentation
  *
  * @author kasper and martin bøgh
  */
@@ -35,6 +35,7 @@ public class LogicFacade
 
     
     /**
+     * store one User object's contents (email, password, role) in storage. ID is auto-filled
      * 
      * @param email
      * @param password
@@ -50,6 +51,7 @@ public class LogicFacade
 
     
     /**
+     * get one User object from storage
      * 
      * @param userID
      * @return
@@ -62,10 +64,12 @@ public class LogicFacade
 
     
     /**
+     * store one Order object's contents in storage
      * 
      * @param order
      * @return
      * @throws OrderSampleException 
+     * @throws Logic.Exceptions.LoginSampleException 
      */
     public static Order createOrder(Order order) throws OrderSampleException, LoginSampleException
     {
@@ -74,10 +78,12 @@ public class LogicFacade
 
     
     /**
+     * get one Order object from storage 
      * 
      * @param orderId
      * @return
      * @throws OrderSampleException 
+     * @throws Logic.Exceptions.LoginSampleException 
      */
     public static Order fetchOrder(int orderId) throws OrderSampleException, LoginSampleException
     {
@@ -86,9 +92,11 @@ public class LogicFacade
 
     
     /**
+     * get list of all Order objects from storage 
      * 
      * @return
      * @throws OrderSampleException 
+     * @throws Logic.Exceptions.LoginSampleException 
      */
     public static List<Order> fetchOrders() throws OrderSampleException, LoginSampleException
     {
@@ -97,10 +105,12 @@ public class LogicFacade
 
     
     /**
+     * get list of Order objects from storage "owned" by a single user
      * 
      * @param userId
      * @return
      * @throws OrderSampleException 
+     * @throws Logic.Exceptions.LoginSampleException 
      */
     public static List<Order> fetchOrders(int userId) throws OrderSampleException, LoginSampleException
     {
@@ -109,11 +119,12 @@ public class LogicFacade
 
     
     /**
-     * changes an orders status in database
+     * changes an orders status to shipped (true) in storage
      * 
      * @param order
      * @return Order object
      * @throws OrderSampleException 
+     * @throws Logic.Exceptions.LoginSampleException 
      */
     public static Order setOrderAsShipped(Order order) throws OrderSampleException, LoginSampleException
     {

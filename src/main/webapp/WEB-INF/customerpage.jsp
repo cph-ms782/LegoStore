@@ -1,5 +1,6 @@
 <%-- 
     Document   : customerpage
+    Function   : showing login message
     Created on : Aug 22, 2017, 2:33:37 PM
     Author     : kasper
 --%>

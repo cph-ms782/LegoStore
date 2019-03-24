@@ -1,5 +1,6 @@
 <%-- 
     Document   : neworderpage.jsp
+    Function   : presenting form for bulding new house
     Created on : Mar, 2019
     Author     : martin bøgh
 --%>

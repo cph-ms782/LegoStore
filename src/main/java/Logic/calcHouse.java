@@ -3,12 +3,21 @@ package Logic;
 import Logic.DTO.Bricks;
 
 /**
- *
+ * handling all brick-amount calculations
+ * 
  * @author martin
  */
 public class calcHouse
 {
 
+    /**
+     * first very rudimentary calculation try
+     * no pattern, no window, no door
+     * 
+     * @param length
+     * @param bricks
+     * @return 
+     */
     private static Bricks calcSide(int length, Bricks bricks)
     {
 
@@ -22,6 +31,13 @@ public class calcHouse
         return bricks;
     }
 
+    /**
+     * 
+     * @param length
+     * @param width
+     * @param height
+     * @return 
+     */
     public static Bricks calc(int length, int width, int height)
     {
         Bricks bricks = new Bricks();
