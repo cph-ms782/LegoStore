@@ -119,7 +119,7 @@ public class LogicFacade
 
     
     /**
-     * changes an orders status to shipped (true) in storage
+     * changes an orders status to shipped (true) in storage and then return the Order object
      * 
      * @param order
      * @return Order object
@@ -128,11 +128,12 @@ public class LogicFacade
      */
     public static Order setOrderAsShipped(Order order) throws OrderSampleException, LoginSampleException
     {
-        OrderMapper_DB.changeShipping(order.getOrderID());
+        int orderID = order.getOrderID();
+        OrderMapper_DB.changeShipping(orderID);
 
 //        Used with OrderMapper_Dummy
 //        order.setShipped(true);
-        return order;
+        return fetchOrder(orderID);
     }
 
     

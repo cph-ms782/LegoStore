@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The purpose of UserMapper_DB is to...
+ * The purpose of orderMapper_DB is to fetch and manipulate database tables concerning orders
  *
- * @author kasper
+ * @author kasper and martin bøgh
  */
 public class OrderMapper_DB
 {
@@ -103,6 +103,13 @@ public class OrderMapper_DB
         }
     }
 
+    /**
+     * return a list of all Order objects
+     * 
+     * @return
+     * @throws OrderSampleException
+     * @throws LoginSampleException 
+     */
     public static List<Order> findOrders() throws OrderSampleException, LoginSampleException
     {
         List<Order> orders = new ArrayList<>();
@@ -160,6 +167,13 @@ public class OrderMapper_DB
         return userOrderList;
     }
 
+    /**
+     * finds an Order object depending from it's orderID
+     * 
+     * @param orderID
+     * @throws OrderSampleException
+     * @throws LoginSampleException 
+     */
     public static void changeShipping(int orderID) throws OrderSampleException, LoginSampleException
     {
         try

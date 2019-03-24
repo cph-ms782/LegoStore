@@ -60,6 +60,28 @@ public class CheckOrderCommand extends Command
 
                 try
                 {
+//                  setup the orderInfo box. Calculate lineitems.
+                    if (isOrder && orderID > 0)
+                    {
+                        Order o = LogicFacade.fetchOrder(orderID);
+                        Bricks bricks = calcHouse.calc(o.getHeight(),
+                                o.getWidth(), o.getHeight());
+                        
+//                      set status as shipped.
+                        if (isShipped)
+                        {
+                            o = LogicFacade.setOrderAsShipped(o);
+                        }
+                        session.setAttribute("bricks", bricks);
+                        session.setAttribute("order", o);
+                        session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
+                    } else
+                    {// set all used attributes to null if there is no order
+                        session.setAttribute("bricks", null);
+                        session.setAttribute("order", null);
+                        session.setAttribute("orderUser", null);
+                    }
+                    
 //                  check for employee. Then either show all the orders or only the users orders
                     if (isEmployee)
                     {
@@ -75,28 +97,6 @@ public class CheckOrderCommand extends Command
                         } else{ // throw message if there's no order yet
                             throw new OrderSampleException("Der er ingen ordrer endnu");
                         }
-                    }
-                    
-//                  setup the orderInfo box. Calculate lineitems.
-                    if (isOrder && orderID > 0)
-                    {
-                        Order o = LogicFacade.fetchOrder(orderID);
-                        Bricks bricks = calcHouse.calc(o.getHeight(),
-                                o.getWidth(), o.getHeight());
-                        
-//                      set status as shipped. With this position you have to refresh page to get it to show in table
-                        if (isShipped)
-                        {
-                            LogicFacade.setOrderAsShipped(o);
-                        }
-                        session.setAttribute("bricks", bricks);
-                        session.setAttribute("order", o);
-                        session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
-                    } else
-                    {// set all used attributes to null if there is no order
-                        session.setAttribute("bricks", null);
-                        session.setAttribute("order", null);
-                        session.setAttribute("orderUser", null);
                     }
                 } catch (OrderSampleException ex)
                 {// if something goes wrong with all the checking and pulling out data from storage this message will appear

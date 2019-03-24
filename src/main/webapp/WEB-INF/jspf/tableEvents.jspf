@@ -19,10 +19,15 @@
 //        create table-click links depending on user role
         $('#mainTable:has(td)').click(function (e)
         {
-
+//          clickedCell is the cell you've clicked on
             var clickedCell = $(e.target).closest('td');
+//          
+//          clickedRow is the row you've clicked on
             var clickedRow = $(e.target).closest('tr');
+            
+//          value is the value of the fist cell in the row you've clicked on
             var value = clickedRow.find('td:eq(0)').text();
+            
     <%    String role = (String) session.getAttribute("role");
     if (role != null && role.equals("employee"))
     { %>
@@ -31,14 +36,16 @@
                 var r = confirm("Er varen afsendt?");
                 if (r == true)
                 {
+//                  the "orderSent=true" part makes sure that the order status is changed to true when the CheckOrderCommand catches it
                     var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderSent=true&orderID=' + value;
-                    window.location.href = url;
+                    window.location = url;
                     return;
                 }
             }
     <%}%>
+//          if you press somewhere on table and you're not an employee or it doesn't say 'false' then you just see the order info
             var url = 'FrontController?command=CheckOrderCommand&seeOrder=true&orderID=' + value;
-            window.location.href = url;
+            window.location = url;
         }); // end mouseover
 
     }); // end ready
