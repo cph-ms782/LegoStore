@@ -1,3 +1,11 @@
+/**
+ * Function for making a table. Is fed header array, tablecontents array and a HTML tag to put it in
+ * Styling comes from Bootstrap
+ * 
+ * @param {type} headerNames    array of header names
+ * @param {type} tableContent   array of table contents
+ * @param {type} tableID        a HTML tag to put table in
+ */
 function createTable(headerNames, tableContent, tableID)
 {
 //    creting fixpoint for table

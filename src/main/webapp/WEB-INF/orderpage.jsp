@@ -25,8 +25,8 @@
         <!--setup of java to JS array-->
         <%@ include file = "jspf/arrayJava2JS.jspf"%>
 
-<!--      create tables. Function "createTable" is in makeTables.js. Array "orderArray" 
-          is made in "arrayJava2JS.jspf". 'mainTable' is HTML tag implanted in "body.jspf" -->
+        <!--      create tables. Function "createTable" is in makeTables.js. Array "orderArray" 
+                  is made in "arrayJava2JS.jspf". 'mainTable' is HTML tag implanted in "body.jspf" -->
         <script>
             $(document).ready(function () // this make the JS wait for HTML to finish
             {
@@ -68,7 +68,11 @@
         </div>
         <% } else
         { %>
-        <div id="errorInfo">Ingen ordrer valgt<br>
+        <div id="orderInfoBox">
+            <div class="orderInfo">
+                <div id="orderInfoHeader">Ingen ordrer valgt. Tryk på tabellen<br>
+                </div>
+            </div>
         </div>
         <%}%>
     </body>
