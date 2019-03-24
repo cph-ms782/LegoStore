@@ -14,5 +14,16 @@
 
     <body>
         <%@ include file = "WEB-INF/jspf/body.jspf" %>
+
+        <!--info for user-->
+        <div class="firstText">
+            <div id="orderInfoHeader">
+                <br><br><br><br><br>
+                Forslag til login:<br>
+                Ansat: hans@jensen.dk, Kodeord: 1234<br>
+                <br>
+                Kunde: jens@hansen.dk, Kodeord: 1234<br>
+            </div>
+        </div>
     </body>
 </html>
