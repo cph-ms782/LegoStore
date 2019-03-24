@@ -14,7 +14,12 @@
 
     <body>
         <%@ include file = "WEB-INF/jspf/body.jspf" %>
-
+        
+        Only bring text if there's no logged in user
+        <%User cUser = (User) session.getAttribute("user");
+            if (cUser == null)
+            {
+        %>
         <!--info for user-->
         <div class="firstText">
             <div id="orderInfoHeader">
@@ -25,5 +30,6 @@
                 Kunde: jens@hansen.dk, Kodeord: 1234<br>
             </div>
         </div>
+        <%}%>
     </body>
 </html>
