@@ -69,7 +69,7 @@
         <% } else
         { %>
         
-      <!--if table has been pressed inform about it-->
+      <!--if table has not been pressed inform about it-->
         <div id="orderInfoBox">
             <div class="orderInfo">
                 <div id="orderInfoHeader">Ingen ordrer valgt. Tryk på tabellen<br>

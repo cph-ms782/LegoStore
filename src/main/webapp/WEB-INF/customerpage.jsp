@@ -15,7 +15,12 @@
         <%@ include file = "jspf/body.jspf" %>
         <div id="mainInfo">Hej <%=request.getParameter("email")%><br>
             <p> Velkommen til LEGO Store.</p>
-            <p> Vil du købe et nyt hus eller se tidligere ordrer.</p>
+            
+            <!--info for user-->
+            <div id="orderInfoBox">
+                    <div id="orderInfoHeader">Byg et nyt hus eller se ordre status<br>
+                </div>
+            </div>
         </div>
     </body>
 </html>

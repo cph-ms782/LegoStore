@@ -1,10 +1,12 @@
 package Presentation;
 
+import Logic.DTO.Bricks;
 import Logic.LogicFacade;
 import Logic.DTO.Order;
 import Logic.DTO.User;
 import Logic.Exceptions.LoginSampleException;
 import Logic.Exceptions.OrderSampleException;
+import Logic.calcHouse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +35,7 @@ public class FinishedOrderCommand extends Command
                 int height = Integer.parseInt(request.getParameter("height"));
 
                 Order order = new Order(user.getID(), length, width, height, false);
-
+                
                 try
                 {
                     //Save and fill order with orderID
@@ -41,6 +43,10 @@ public class FinishedOrderCommand extends Command
                     session.setAttribute("orders",
                             LogicFacade.fillOrderList(LogicFacade.fetchOrders(user.getID())));
                     session.setAttribute("order", order);
+                    
+                    Bricks bricks = calcHouse.calc(length,
+                            width, height);
+                    session.setAttribute("bricks", bricks);
 
                 } catch (OrderSampleException ex)
                 {// if there's been an error in the fetching of data from storage
