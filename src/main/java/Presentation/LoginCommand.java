@@ -24,5 +24,4 @@ public class LoginCommand extends Command {
         session.setAttribute( "role", user.getRole() );
         return user.getRole() + "page";
     }
-
 }

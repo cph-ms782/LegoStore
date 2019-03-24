@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * handling a new user command from request (when pressing "Registration" in login menu)
+ *
+ * @author martin bøgh
+ */
 public class RegisterCommand extends Command {
 
     @Override

@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * command for handling orders when user wants to see a list of orders
+ * handling a new order command from request
  *
- * @author martin
+ * @author martin bøgh
  */
 public class CheckOrderCommand extends Command
 {
@@ -23,8 +23,6 @@ public class CheckOrderCommand extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException
     {
-        try
-        {
             boolean isShipped = false;
             boolean isEmployee = false;
             boolean isOrder = false;
@@ -62,27 +60,31 @@ public class CheckOrderCommand extends Command
 
                 try
                 {
-                    //Save and fill order with orderID
+//                  check for employee. Then either show all the orders or only the users orders
                     if (isEmployee)
                     {
                         session.setAttribute("orders",
                                 LogicFacade.fillOrderList(LogicFacade.fetchOrders()));
-                    } else
+                    } else // user's orders
                     {
                         List<Order> list = LogicFacade.fetchOrders(user.getID());
                         if (list.size() > 0)
                         {
                             session.setAttribute("orders",
                                     LogicFacade.fillOrderList(list));
-                        } else{
+                        } else{ // throw message if there's no order yet
                             throw new OrderSampleException("Der er ingen ordrer endnu");
                         }
                     }
+                    
+//                  setup the orderInfo box. Calculate lineitems.
                     if (isOrder && orderID > 0)
                     {
                         Order o = LogicFacade.fetchOrder(orderID);
                         Bricks bricks = calcHouse.calc(o.getHeight(),
                                 o.getWidth(), o.getHeight());
+                        
+//                      set status as shipped. With this position you have to refresh page to get it to show in table
                         if (isShipped)
                         {
                             LogicFacade.setOrderAsShipped(o);
@@ -91,24 +93,20 @@ public class CheckOrderCommand extends Command
                         session.setAttribute("order", o);
                         session.setAttribute("orderUser", LogicFacade.fetchUser(o.getUserID()));
                     } else
-                    {
+                    {// set all used attributes to null if there is no order
                         session.setAttribute("bricks", null);
                         session.setAttribute("order", null);
                         session.setAttribute("orderUser", null);
                     }
                 } catch (OrderSampleException ex)
-                {
+                {// if something goes wrong with all the checking and pulling out data from storage this message will appear
                     throw new OrderSampleException("Der skete en fejl mens liste af ordre blev samlet: "
                             + ex.getMessage());
                 }
             } else
-            {
+            {// if you're logged out (aka there's no User in session) then this message
                 throw new LoginSampleException("Du er logget ud. Log ind for at fortsætte");
             }
-        } catch (NumberFormatException ex)
-        {
-            throw new OrderSampleException("Ikke alle værdier blev fundet i forsøget på at se ordrer: " + ex.getMessage());
-        }
         
 //      if there were no exceptions sprung show the orderpage
         return "orderpage";

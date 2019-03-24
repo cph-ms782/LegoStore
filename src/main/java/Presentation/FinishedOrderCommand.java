@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * command for handling a new order
+ * handling a finished order command coming from the neworderpage.jsp
  *
- * @author martin
+ * @author martin bøgh
  */
 public class FinishedOrderCommand extends Command
 {
@@ -50,15 +50,17 @@ public class FinishedOrderCommand extends Command
                         session.setAttribute("order", order);
                     }
                 } catch (OrderSampleException ex)
-                {
+                {// if there's been an error in the fetching of data from storage
                     throw new OrderSampleException("Der er sket en fejl i håndteringen af den nye ordre" + ex.getMessage());
                 }
             } catch (NumberFormatException ex)
-            {
+            {// if something not a number was entered
                 throw new OrderSampleException("Ikke alle indtastede værdier var hele tal: " + ex.getMessage());
             }
+//          if there's been no exception pass on to the next page
             return "orderpage";
         }
+//      if you're not logged in an a customer this message
         throw new LoginSampleException("Man skal være en logget ind kunde for kunne ordre hus");
     }
 

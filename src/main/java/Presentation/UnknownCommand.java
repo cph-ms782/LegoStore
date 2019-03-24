@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The purpose of UnknownCommand is to pass exception error "tell user that IT needs to be called"
+ * The purpose of UnknownCommand is to pass on exception error "tell user that IT needs to be called"
  *
  *  @author kasper & martin bøgh
  */

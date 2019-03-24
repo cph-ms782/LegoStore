@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- The purpose of LogoutCommand is to...
+ The purpose of LogoutCommand is to show you're logged out
 
- @author kasper
+ @author martin bøgh
  */
 public class LogoutCommand extends Command {
 
@@ -19,5 +19,4 @@ public class LogoutCommand extends Command {
         session.setAttribute( "role", null);
         throw new LoginSampleException(("Du er nu logget ud!"));
     }
-
 }

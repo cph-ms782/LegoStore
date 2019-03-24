@@ -1,3 +1,10 @@
+<%-- 
+    Document   : neworderpage.jsp
+    Function   : menu
+    Created on : Mar, 2019
+    Author     : martin bøgh
+--%>
+
 <%@page import="Logic.DTO.User"%>
 <%@ page pageEncoding="UTF-8" %>
 <div class="content">

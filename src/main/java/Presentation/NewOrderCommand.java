@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * handling a new order command from request (when pressing "Byg hus" in menu)
+ *
+ * @author martin bøgh
+ */
 public class NewOrderCommand extends Command
 {
 
