@@ -9,6 +9,7 @@ public class Bricks
     private int fourBrick = 0;
     private int twoBrick = 0;
     private int oneBrick = 0;
+//    private int 
 
     public Bricks()
     {
